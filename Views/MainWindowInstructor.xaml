@@ -1,0 +1,46 @@
+﻿<Window x:Class="SportClub.Views.MainWindowInstructor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SportClub.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="SportClub Instructor" Height="720" Width="870"
+        Foreground="{DynamicResource MaterialDesignBody}"
+        FontFamily="Segoe UI">
+
+    <Window.Resources>
+        <Style x:Key="MenuItemStyle" TargetType="MenuItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3D3D3D"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="Tag" Value="Active">
+                    <Setter Property="Background" Value="#3D3D3D"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <DockPanel Background="{DynamicResource MaterialDesignBackground}">
+        <!-- Navigacioni bar -->
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Menu VerticalAlignment="Center" Background="Transparent"
+                  HorizontalAlignment="Left"
+                  FontSize="14" FontFamily="Segoe UI">
+                <MenuItem Header="Članovi" Click="OpenClanovi" x:Name="ClanoviMenuItem" Style="{StaticResource MenuItemStyle}" Tag=""/>
+                <MenuItem Header="Prisustvo" Click="OpenPrisustvo" x:Name="PrisustvoMenuItem" Style="{StaticResource MenuItemStyle}" Tag=""/>
+                <MenuItem Header="Takmičenje" Click="OpenTakmicenje" x:Name="TakmicenjeMenuItem" Style="{StaticResource MenuItemStyle}" Tag=""/>
+                <MenuItem Header="Članarina" Click="OpenClanarine" x:Name="ClanarineMenuItem" Style="{StaticResource MenuItemStyle}" Tag=""/>
+                <MenuItem Header="Podešavanja" Click="OpenPodesavanje" x:Name="PodesavanjeMenuItem" Style="{StaticResource MenuItemStyle}" Tag=""/>
+            </Menu>
+        </StackPanel>
+        <ContentControl x:Name="MainContent" />
+    </DockPanel>
+</Window>

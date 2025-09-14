@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="SportClub.Views.MembershipInstructorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        d:DesignHeight="600" d:DesignWidth="800">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" Text="Upravljanje članarinama" 
+                   FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <!-- Filter controls -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,10,0"
+                     materialDesign:HintAssist.Hint="Pretraga po nazivu"
+                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button Content="Nova članarina" Click="AddMembership_Click"
+                    Style="{StaticResource MaterialDesignRaisedButton}"/>
+        </StackPanel>
+
+        <!-- Memberships list -->
+        <DataGrid Grid.Row="2" AutoGenerateColumns="False" 
+                  ItemsSource="{Binding Memberships}" 
+                  SelectedItem="{Binding SelectedMembership}"
+                  IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Type}" Width="*"/>
+                <DataGridTextColumn Header="Cijena (€)" Binding="{Binding Price}" Width="80"/>
+                <DataGridTextColumn Header="Trajanje (dani)" Binding="{Binding Duration.Days}" Width="100"/>
+                <DataGridTextColumn Header="Broj članova" Binding="{Binding MembershipClubMembers.Count}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Add member section -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,10">
+            <ComboBox x:Name="AvailableMembersComboBox" Width="200" Margin="0,0,10,0"
+                      DisplayMemberPath="FullName"
+                      materialDesign:HintAssist.Hint="Odaberite člana"/>
+            <Button Content="Dodaj člana na članarinu" Click="AddMemberToMembership_Click"
+                    Style="{StaticResource MaterialDesignRaisedButton}"/>
+        </StackPanel>
+
+        <!-- Members with selected membership -->
+        <DataGrid Grid.Row="4" AutoGenerateColumns="False" 
+                  ItemsSource="{Binding MembersWithMembership}"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ime" Binding="{Binding ClubMember.FirstName}" Width="*"/>
+                <DataGridTextColumn Header="Prezime" Binding="{Binding ClubMember.LastName}" Width="*"/>
+                <DataGridTextColumn Header="Datum rođenja" Binding="{Binding ClubMember.BirthDate, StringFormat=d}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

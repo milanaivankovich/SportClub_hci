@@ -1,0 +1,65 @@
+﻿<Window x:Class="SportClub.Views.AddCompetitionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Dodavanje Takmičenja" Height="450" Width="400"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
+            <Setter Property="Margin" Value="0,5,0,15"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
+            <Setter Property="Margin" Value="10,0,0,0"/>
+            <Setter Property="Width" Value="100"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Naziv -->
+        <TextBlock Grid.Row="0" Text="Naziv:" Margin="0,0,0,5" FontWeight="Bold"/>
+        <TextBox x:Name="NazivTextBox" Grid.Row="1"/>
+
+        <!-- Mjesto -->
+        <TextBlock Grid.Row="2" Text="Mjesto:" Margin="0,0,0,5" FontWeight="Bold"/>
+        <TextBox x:Name="MjestoTextBox" Grid.Row="3"/>
+
+        <!-- Datum -->
+        <TextBlock Grid.Row="4" Text="Datum:" Margin="0,0,0,5" FontWeight="Bold"/>
+        <DatePicker x:Name="DatumDatePicker" Grid.Row="5" 
+                   Style="{StaticResource MaterialDesignOutlinedDatePicker}"
+                   Margin="0,5,0,10"/>
+
+        <!-- Vrijeme -->
+        <TextBlock Grid.Row="6" Text="Vrijeme:" Margin="0,0,0,5" FontWeight="Bold"/>
+        <Grid Grid.Row="7" Margin="0,5,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="VrijemeTextBox" Margin="0,0,10,0"/>
+            <Button Grid.Column="1" Content="Sada" Click="SetCurrentTime_Click"/>
+        </Grid>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Sačuvaj" Click="SaveButton_Click"/>
+            <Button Content="Otkaži" Click="CancelButton_Click" Margin="10,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
