@@ -94,6 +94,8 @@ git clone https://github.com/milanaivankovich/SportClub_hci.git
 
 Aplikacija koristi SQLite bazu podataka koja se automatski kreira pri prvom pokretanju. Baza se nalazi u folderu aplikacije pod nazivom "sportclub.db".
 
+![image_uri](https://github.com/milanaivankovich/SportClub_hci/blob/50de2f0756691f257358d627dcdb7739b213614e/photos/dbSportClub.png)
+
 ## Tehnologije
 
 - .NET Framework 4.7.2+
