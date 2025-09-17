@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using SportClub.Views;
+using SportClub.Services;
 
 namespace SportClub.Views
 {
@@ -39,26 +40,35 @@ namespace SportClub.Views
             SetActiveMenuItem(InstruktoriMenuItem);
         }
 
-        
-
         private void OpenTakmicenja(object sender, RoutedEventArgs e)
         {
-            MainContent.Content = new CompetitionsView(); // Ensure TakmicenjaView exists
+            MainContent.Content = new CompetitionsView();
             SetActiveMenuItem(TakmicenjaMenuItem);
         }
 
         private void OpenClanarine(object sender, RoutedEventArgs e)
         {
-        
             MainContent.Content = new MembershipsView();
             SetActiveMenuItem(ClanarineMenuItem);
         }
 
         private void OpenPodesavanje(object sender, RoutedEventArgs e)
         {
-            // Placeholder for PodesavanjeView (create this view if not already implemented)
-            //MainContent.Content = new PodesavanjeView(); // Ensure PodesavanjeView exists
+            MainContent.Content = new PodesavanjeView();
             SetActiveMenuItem(PodesavanjeMenuItem);
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Logout the user
+            CurrentUserService.Instance.Logout();
+
+            // Otvori login prozor
+            var loginWindow = new LoginWindow();
+            loginWindow.Show();
+
+            // Zatvori trenutni admin prozor
+            this.Close();
         }
     }
 }

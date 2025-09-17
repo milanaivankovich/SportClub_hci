@@ -6,21 +6,26 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converters="clr-namespace:SportClub.Converters"
              mc:Ignorable="d"
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800"
+             Background="{DynamicResource BackgroundBrush}">
+
     <UserControl.Resources>
         <converters:NullToBooleanConverter x:Key="NullToBooleanConverter" />
     </UserControl.Resources>
-    <Grid Margin="10">
+
+    <Grid Margin="10" Background="{DynamicResource BackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Search Box -->
-        <TextBox Grid.Row="0" Margin="0,0,0,10" 
-                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                 materialDesign:HintAssist.Hint="Pretraži takmičenja po nazivu..."
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        <!-- Search Box Card -->
+        <Border Grid.Row="0" Style="{DynamicResource MaterialCard}" Margin="0,0,0,10">
+            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:HintAssist.Hint="Pretraži takmičenja po nazivu..."
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Margin="10"/>
+        </Border>
 
         <!-- Main Content -->
         <Grid Grid.Row="1">
@@ -29,99 +34,194 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Competitions List -->
-            <Border Grid.Column="0" Margin="0,0,10,0" BorderBrush="Gray" BorderThickness="1">
+            <!-- Competitions List Card -->
+            <Border Grid.Column="0" Margin="0,0,10,0" Style="{DynamicResource MaterialCard}">
                 <DockPanel>
-                    <TextBlock DockPanel.Dock="Top" Text="Takmičenja" FontWeight="Bold" Margin="5" />
+                    <TextBlock DockPanel.Dock="Top" Text="Takmičenja" 
+                               FontWeight="Bold" Margin="10,10,10,5"
+                               Foreground="{DynamicResource TextBrush}"/>
                     <ListBox ItemsSource="{Binding FilteredCompetitions}" 
                              SelectedItem="{Binding SelectedCompetition}"
                              DisplayMemberPath="Name"
-                             SelectionMode="Single" />
+                             SelectionMode="Single"
+                             Background="{DynamicResource SurfaceBrush}"
+                             Foreground="{DynamicResource TextBrush}"
+                             BorderThickness="0">
+                        <ListBox.Resources>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                                <Setter Property="Padding" Value="10,5"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource SecondaryBrush}"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.Resources>
+                    </ListBox>
                 </DockPanel>
             </Border>
 
-            <!-- Competition Details and Participants -->
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+            <!-- Competition Details and Participants Card -->
+            <Border Grid.Column="1" Style="{DynamicResource MaterialCard}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <!-- Competition Details -->
-                <Border Grid.Row="0" Margin="0,0,0,10" BorderBrush="Gray" BorderThickness="1" Padding="5">
-                    <StackPanel>
-                        <TextBlock Text="Detalji takmičenja" FontWeight="Bold" Margin="0,0,0,5"/>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                    <!-- Competition Details -->
+                    <Border Grid.Row="0" Margin="0,0,0,10" Style="{DynamicResource MaterialCard}" Padding="10">
+                        <StackPanel>
+                            <TextBlock Text="Detalji takmičenja" 
+                                       FontWeight="Bold" Margin="0,0,0,10"
+                                       Foreground="{DynamicResource TextBrush}"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Naziv:" FontWeight="Bold" Margin="0,0,5,5"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedCompetition.Name}" Margin="0,0,0,5"/>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Naziv:" 
+                                           FontWeight="Bold" Margin="0,0,5,5"
+                                           Foreground="{DynamicResource TextBrush}"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedCompetition.Name}" 
+                                           Margin="0,0,0,5"
+                                           Foreground="{DynamicResource TextBrush}"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Lokacija:" FontWeight="Bold" Margin="0,0,5,5"/>
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SelectedCompetition.Location}" Margin="0,0,0,5"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Lokacija:" 
+                                           FontWeight="Bold" Margin="0,0,5,5"
+                                           Foreground="{DynamicResource TextBrush}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SelectedCompetition.Location}" 
+                                           Margin="0,0,0,5"
+                                           Foreground="{DynamicResource TextBrush}"/>
 
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Datum:" FontWeight="Bold" Margin="0,0,5,0"/>
-                            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SelectedCompetition.Date, StringFormat=dd.MM.yyyy HH:mm}"/>
-                        </Grid>
-                    </StackPanel>
-                </Border>
-
-                <!-- Participants Management -->
-                <Grid Grid.Row="1" Margin="0,0,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Available Members -->
-                    <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
-                        <DockPanel>
-                            <TextBlock DockPanel.Dock="Top" Text="Dostupni članovi" FontWeight="Bold" Margin="5"/>
-                            <ListBox ItemsSource="{Binding AvailableMembers}" 
-                                     SelectedItem="{Binding SelectedAvailableMember}"
-                                     DisplayMemberPath="FullName"
-                                     SelectionMode="Single" />
-                        </DockPanel>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Datum:" 
+                                           FontWeight="Bold" Margin="0,0,5,0"
+                                           Foreground="{DynamicResource TextBrush}"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" 
+                                           Text="{Binding SelectedCompetition.Date, StringFormat=dd.MM.yyyy HH:mm}"
+                                           Foreground="{DynamicResource TextBrush}"/>
+                            </Grid>
+                        </StackPanel>
                     </Border>
 
-                    <!-- Buttons -->
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10">
-                        <Button Content="➡" ToolTip="Dodaj takmičara" 
-                                Click="AddParticipant_Click" 
-                                Margin="0,5" Padding="10,5"/>
-                        <Button Content="⬅" ToolTip="Ukloni takmičara" 
-                                Click="RemoveParticipant_Click" 
-                                Margin="0,5" Padding="10,5"/>
-                    </StackPanel>
+                    <!-- Participants Management -->
+                    <Grid Grid.Row="1" Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <!-- Current Participants -->
-                    <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
-                        <DockPanel>
-                            <TextBlock DockPanel.Dock="Top" Text="Takmičari" FontWeight="Bold" Margin="5"/>
-                            <ListBox ItemsSource="{Binding SelectedCompetitionParticipants}" 
-                                     SelectedItem="{Binding SelectedParticipant}"
-                                     DisplayMemberPath="FullName"
-                                     SelectionMode="Single" />
-                        </DockPanel>
-                    </Border>
+                        <!-- Available Members Card -->
+                        <Border Grid.Column="0" Style="{DynamicResource MaterialCard}">
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Top" Text="Dostupni članovi" 
+                                           FontWeight="Bold" Margin="10,10,10,5"
+                                           Foreground="{DynamicResource TextBrush}"/>
+                                <ListBox ItemsSource="{Binding AvailableMembers}" 
+                                         SelectedItem="{Binding SelectedAvailableMember}"
+                                         DisplayMemberPath="FullName"
+                                         SelectionMode="Single"
+                                         Background="{DynamicResource SurfaceBrush}"
+                                         Foreground="{DynamicResource TextBrush}"
+                                         BorderThickness="0">
+                                    <ListBox.Resources>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                                            <Setter Property="Padding" Value="10,5"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="{DynamicResource SecondaryBrush}"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ListBox.Resources>
+                                </ListBox>
+                            </DockPanel>
+                        </Border>
+
+                        <!-- Buttons -->
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10">
+                            <Button Content="➡" ToolTip="Dodaj takmičara" 
+                                    Click="AddParticipant_Click" 
+                                    Margin="0,5" Padding="10,5"
+                                    Background="{DynamicResource PrimaryBrush}"
+                                    Foreground="White"
+                                    Style="{DynamicResource MaterialDesignRaisedButton}"/>
+                            <Button Content="⬅" ToolTip="Ukloni takmičara" 
+                                    Click="RemoveParticipant_Click" 
+                                    Margin="0,5" Padding="10,5"
+                                    Background="{DynamicResource PrimaryBrush}"
+                                    Foreground="White"
+                                    Style="{DynamicResource MaterialDesignRaisedButton}"/>
+                        </StackPanel>
+
+                        <!-- Current Participants Card -->
+                        <Border Grid.Column="2" Style="{DynamicResource MaterialCard}">
+                            <DockPanel>
+                                <TextBlock DockPanel.Dock="Top" Text="Takmičari" 
+                                           FontWeight="Bold" Margin="10,10,10,5"
+                                           Foreground="{DynamicResource TextBrush}"/>
+                                <ListBox ItemsSource="{Binding SelectedCompetitionParticipants}" 
+                                         SelectedItem="{Binding SelectedParticipant}"
+                                         DisplayMemberPath="FullName"
+                                         SelectionMode="Single"
+                                         Background="{DynamicResource SurfaceBrush}"
+                                         Foreground="{DynamicResource TextBrush}"
+                                         BorderThickness="0">
+                                    <ListBox.Resources>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                                            <Setter Property="Padding" Value="10,5"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="{DynamicResource SecondaryBrush}"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ListBox.Resources>
+                                </ListBox>
+                            </DockPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- Save Button -->
+                    <Button Grid.Row="2" Content="Sačuvaj promjene" 
+                            Click="SaveChanges_Click" 
+                            HorizontalAlignment="Right"
+                            IsEnabled="{Binding SelectedCompetition, Converter={StaticResource NullToBooleanConverter}}"
+                            Background="{DynamicResource PrimaryBrush}"
+                            Foreground="White"
+                            Style="{DynamicResource MaterialDesignRaisedButton}"
+                            Margin="0,10,0,0"/>
                 </Grid>
-
-                <!-- Save Button -->
-                <Button Grid.Row="2" Content="Sačuvaj promjene" 
-                        Click="SaveChanges_Click" 
-                        HorizontalAlignment="Right"
-                        IsEnabled="{Binding SelectedCompetition, Converter={StaticResource NullToBooleanConverter}}"/>
-            </Grid>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>

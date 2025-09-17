@@ -10,5 +10,6 @@ namespace SportClub.Views
             InitializeComponent();
             DataContext = new MembershipsViewModel();
         }
+
     }
 }

@@ -45,7 +45,7 @@
 								 Height="45"
 								 FontSize="14"
 								 Padding="40,0,10,0"
-								 Background="White"
+								 Background="Transparent"
 								 BorderBrush="{StaticResource DarkRedBorderBrush}"
 								 BorderThickness="0,0,0,2"
 								 VerticalContentAlignment="Center"
@@ -53,7 +53,7 @@
 
                         <TextBlock Text="Korisničko ime" 
 								   IsHitTestVisible="False"
-								   Foreground="Gray"
+								   Foreground="White"
 								   FontSize="14"
 								   Margin="40,0,0,0"
 								   VerticalAlignment="Center">
@@ -80,26 +80,27 @@
 
                     <!-- Password field with visibility toggle -->
                     <Grid Margin="0,0,0,25">
+                        <!-- Vidljivi password TextBox -->
                         <TextBox x:Name="PasswordTextBox"
-								 Height="45"
-								 FontSize="14"
-								 Padding="40,0,40,0"
-								 Background="White"
-								 BorderBrush="{StaticResource DarkRedBorderBrush}"
-								 BorderThickness="0,0,0,2"
-								 VerticalContentAlignment="Center"
-								 Text="{Binding PasswordText, UpdateSourceTrigger=PropertyChanged}"
-								 Visibility="{Binding IsPasswordVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                 Height="45"
+                                 FontSize="14"
+                                 Padding="40,0,40,0"
+                                 Background="Transparent"
+                                 BorderBrush="{StaticResource DarkRedBorderBrush}"
+                                 BorderThickness="0,0,0,2"
+                                 VerticalContentAlignment="Center"
+                                 Text="{Binding PasswordText, UpdateSourceTrigger=PropertyChanged}"/>
 
+                        <!-- Skriveni password PasswordBox -->
                         <PasswordBox x:Name="PasswordBox"
-									 Height="45"
-									 FontSize="14"
-									 Padding="40,0,40,0"
-									 Background="White"
-									 BorderBrush="{StaticResource DarkRedBorderBrush}"
-									 BorderThickness="0,0,0,2"
-									 VerticalContentAlignment="Center"
-									 PasswordChanged="PasswordBox_PasswordChanged">
+                                     Height="45"
+                                     FontSize="14"
+                                     Padding="40,40,40,0"
+                                     Background="Transparent"
+                                     BorderBrush="{StaticResource DarkRedBorderBrush}"
+                                     BorderThickness="0,0,0,2"
+                                     VerticalContentAlignment="Center"
+                                     PasswordChanged="PasswordBox_PasswordChanged" Margin="39,0,40,0">
                             <PasswordBox.Style>
                                 <Style TargetType="PasswordBox">
                                     <Setter Property="Visibility" Value="Visible"/>
@@ -112,27 +113,44 @@
                             </PasswordBox.Style>
                         </PasswordBox>
 
+                        <!-- Placeholder text for password -->
                         <TextBlock Text="Lozinka" 
-								   IsHitTestVisible="False"
-								   Foreground="Gray"
-								   FontSize="14"
-								   Margin="40,0,0,0"
-								   VerticalAlignment="Center">
+                                   IsHitTestVisible="False"
+                                   Foreground="White"
+                                   FontSize="14"
+                                   Margin="40,0,0,0"
+                                   VerticalAlignment="Center">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Visibility" Value="Collapsed"/>
                                     <Style.Triggers>
+                                        <!-- Kada je password nevidljiv i prazan -->
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding ElementName=PasswordBox, Path=Password.Length}" Value="0"/>
                                                 <Condition Binding="{Binding IsPasswordVisible}" Value="False"/>
+                                                <Condition Binding="{Binding Password}" Value=""/>
                                             </MultiDataTrigger.Conditions>
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </MultiDataTrigger>
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding Text, ElementName=PasswordTextBox}" Value=""/>
+                                                <Condition Binding="{Binding IsPasswordVisible}" Value="False"/>
+                                                <Condition Binding="{Binding Password}" Value="{x:Null}"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </MultiDataTrigger>
+                                        <!-- Kada je password vidljiv i prazan -->
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
                                                 <Condition Binding="{Binding IsPasswordVisible}" Value="True"/>
+                                                <Condition Binding="{Binding PasswordText}" Value=""/>
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding IsPasswordVisible}" Value="True"/>
+                                                <Condition Binding="{Binding PasswordText}" Value="{x:Null}"/>
                                             </MultiDataTrigger.Conditions>
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </MultiDataTrigger>
@@ -142,24 +160,24 @@
                         </TextBlock>
 
                         <materialDesign:PackIcon Kind="LockOutline" 
-												 Width="24" 
-												 Height="24" 
-												 Foreground="{StaticResource DarkRedBorderBrush}" 
-												 VerticalAlignment="Center"
-												 HorizontalAlignment="Left"
-												 Margin="10,0,0,0"/>
+                                                 Width="24" 
+                                                 Height="24" 
+                                                 Foreground="{StaticResource DarkRedBorderBrush}" 
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Left"
+                                                 Margin="10,0,0,0"/>
 
                         <!-- Eye toggle button -->
                         <ToggleButton x:Name="PasswordVisibilityToggle"
-									  IsChecked="{Binding IsPasswordVisible}"
-									  Width="30"
-									  Height="30"
-									  HorizontalAlignment="Right"
-									  VerticalAlignment="Center"
-									  Margin="0,0,5,0"
-									  Background="Transparent"
-									  BorderThickness="0"
-									  Cursor="Hand">
+                                      IsChecked="{Binding IsPasswordVisible}"
+                                      Width="30"
+                                      Height="30"
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Center"
+                                      Margin="0,0,5,0"
+                                      Background="Transparent"
+                                      BorderThickness="0"
+                                      Cursor="Hand">
                             <ToggleButton.Style>
                                 <Style TargetType="ToggleButton">
                                     <Setter Property="Template">
@@ -167,10 +185,10 @@
                                             <ControlTemplate TargetType="ToggleButton">
                                                 <Grid Background="Transparent">
                                                     <materialDesign:PackIcon x:Name="EyeIcon" 
-																			 Kind="EyeOutline" 
-																			 Width="20" 
-																			 Height="20" 
-																			 Foreground="{StaticResource DarkRedBorderBrush}"/>
+                                                                             Kind="EyeOutline" 
+                                                                             Width="20" 
+                                                                             Height="20" 
+                                                                             Foreground="{StaticResource DarkRedBorderBrush}"/>
                                                 </Grid>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsChecked" Value="True">

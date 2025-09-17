@@ -4,27 +4,136 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:SportClub.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<!-- Buttons Row -->
-		<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-			<Button Content="Pregled Instruktora" Command="{Binding PreviewCommand}" Width="180" Height="30" Margin="5"/>
-			<Button Content="Dodavanje Instrukora" Command="{Binding AddCommand}" Width="180" Height="30" Margin="5"/>
-			<Button Content="Izmjena Instrukora" Command="{Binding EditCommand}" Width="180" Height="30" Margin="5"/>
-		</StackPanel>
-		<!-- Data Grid -->
-		<DataGrid Grid.Row="1" ItemsSource="{Binding Instructors}" SelectedItem="{Binding SelectedInstructor}" AutoGenerateColumns="False" Margin="10">
-			<DataGrid.Columns>
-				<DataGridTextColumn Header="Korisničko ime" Binding="{Binding Username}" Width="*"/>
-				<DataGridTextColumn Header="Ime" Binding="{Binding FirstName}" Width="*"/>
-				<DataGridTextColumn Header="Prezime" Binding="{Binding LastName}" Width="*"/>
-				<DataGridTextColumn Header="Lozinka" Binding="{Binding Password}" Width="*"/>
-			</DataGrid.Columns>
-		</DataGrid>
-	</Grid>
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="{DynamicResource BackgroundBrush}">
+
+    <Grid Background="{DynamicResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header Card -->
+        <Border Grid.Row="0" Style="{DynamicResource MaterialCard}" Margin="10,10,10,5">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Pregled Instruktora" 
+                        Command="{Binding PreviewCommand}" 
+                        Width="180" 
+                        Height="36" 
+                        Margin="5"
+                        Background="{DynamicResource PrimaryBrush}"
+                        Foreground="White"
+                        Style="{DynamicResource MaterialDesignRaisedButton}"/>
+                <Button Content="Dodavanje Instruktora" 
+                        Command="{Binding AddCommand}" 
+                        Width="180" 
+                        Height="36" 
+                        Margin="5"
+                        Background="{DynamicResource PrimaryBrush}"
+                        Foreground="White"
+                        Style="{DynamicResource MaterialDesignRaisedButton}"/>
+                <Button Content="Izmjena Instruktora" 
+                        Command="{Binding EditCommand}" 
+                        Width="180" 
+                        Height="36" 
+                        Margin="5"
+                        Background="{DynamicResource PrimaryBrush}"
+                        Foreground="White"
+                        Style="{DynamicResource MaterialDesignRaisedButton}"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Data Grid Card -->
+        <Border Grid.Row="1" Style="{DynamicResource MaterialCard}" Margin="10,5,10,10">
+            <DataGrid ItemsSource="{Binding Instructors}" 
+                      SelectedItem="{Binding SelectedInstructor}" 
+                      AutoGenerateColumns="False"
+                      Background="{DynamicResource SurfaceBrush}"
+                      Foreground="{DynamicResource TextBrush}"
+                      GridLinesVisibility="Horizontal"
+                      HeadersVisibility="Column"
+                      RowBackground="{DynamicResource SurfaceBrush}"
+                      AlternatingRowBackground="{DynamicResource BackgroundBrush}"
+                      BorderBrush="{DynamicResource PrimaryBrush}"
+                      BorderThickness="1"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      IsReadOnly="True"
+                      SelectionMode="Single">
+
+                <!-- DataGrid Styling -->
+                <DataGrid.Resources>
+                    <!-- Header Style -->
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                    </Style>
+
+                    <!-- Cell Style -->
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Padding" Value="8"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <!-- Row Style -->
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+                        <Setter Property="Height" Value="35"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource SecondaryBrush}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Korisničko ime" 
+                                        Binding="{Binding Username}" 
+                                        Width="*"
+                                        MinWidth="120"/>
+                    <DataGridTextColumn Header="Ime" 
+                                        Binding="{Binding FirstName}" 
+                                        Width="*"
+                                        MinWidth="100"/>
+                    <DataGridTextColumn Header="Prezime" 
+                                        Binding="{Binding LastName}" 
+                                        Width="*"
+                                        MinWidth="100"/>
+                    <DataGridTextColumn Header="Lozinka" 
+                                        Binding="{Binding Password}" 
+                                        Width="*"
+                                        MinWidth="120">
+                        <!-- Optional: Hide password for security -->
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Text" Value="••••••••"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
 </UserControl>

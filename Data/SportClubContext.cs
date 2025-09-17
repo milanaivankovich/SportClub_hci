@@ -19,6 +19,7 @@ namespace SportClub.Data
         public DbSet<MembershipClubMember> MembershipClubMembers { get; set; }
         public DbSet<CompetitionClubMember> CompetitionClubMembers { get; set; }
         public DbSet<InstructorTraining> InstructorTrainings { get; set; }
+        public DbSet<UserSettings> UserSettings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,6 +28,7 @@ namespace SportClub.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             // TPT (Table Per Type) configuration
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Admin>().ToTable("Admins");
@@ -77,6 +79,13 @@ namespace SportClub.Data
                 .HasOne(a => a.Training)
                 .WithMany(t => t.Attendances)
                 .HasForeignKey(a => a.IdTraining);
+
+            modelBuilder.Entity<UserSettings>().HasKey(us => us.Id);
+
+            modelBuilder.Entity<UserSettings>()
+                .HasOne<User>()
+                .WithMany()
+                .HasForeignKey(us => us.UserId);
 
             // Seed data
             modelBuilder.Entity<Admin>().HasData(

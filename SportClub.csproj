@@ -20,8 +20,11 @@
 	
 	
 	<ItemGroup>
+		<PackageReference Include="MaterialDesignExtensions" Version="3.3.0" />
 		<PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
 		<PackageReference Include="MaterialDesignColors" Version="5.2.1" />
+		<PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
+		<PackageReference Include="MaterialDesignColors" Version="3.1.0" />
 		<PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
 		<PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
 		<PackageReference Include="MaterialDesignColors" Version="1.2.7" />
@@ -31,10 +34,6 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -48,6 +47,20 @@
 	<ItemGroup>
 		<Reference Include="PresentationFramework" />
 		<Reference Include="System.Xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Themes\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Themes\DarkTheme.xaml">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Page>
+	  <Page Update="Themes\DefaultTheme.xaml">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Page>
+	  <Page Update="Themes\LightTheme.xaml">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Page>
 	</ItemGroup>
 
 </Project>

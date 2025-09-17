@@ -4,63 +4,192 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        d:DesignHeight="600" d:DesignWidth="800">
+        d:DesignHeight="600" d:DesignWidth="800"
+        Background="{DynamicResource BackgroundBrush}">
 
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <UserControl.Resources>
+        <sys:Double x:Key="MaxScreenHeight">600</sys:Double>
+    </UserControl.Resources>
 
-        <!-- Header -->
-        <TextBlock Grid.Row="0" Text="Upravljanje članarinama" 
-                   FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                  MaxHeight="{Binding Source={StaticResource MaxScreenHeight}}">
+        <Grid Margin="10" Background="{DynamicResource BackgroundBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!-- Filter controls -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBox x:Name="SearchTextBox" Width="200" Margin="0,0,10,0"
-                     materialDesign:HintAssist.Hint="Pretraga po nazivu"
-                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+            <!-- Header Card -->
+            <Border Grid.Row="0" Style="{DynamicResource MaterialCard}" Margin="0,0,0,10">
+                <TextBlock Text="Upravljanje članarinama" 
+                           FontSize="20" FontWeight="Bold" Margin="10"
+                           Foreground="{DynamicResource TextBrush}"/>
+            </Border>
 
-            <Button Content="Nova članarina" Click="AddMembership_Click"
-                    Style="{StaticResource MaterialDesignRaisedButton}"/>
-        </StackPanel>
+            <!-- Filter controls Card -->
+            <Border Grid.Row="1" Style="{DynamicResource MaterialCard}" Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBox x:Name="SearchTextBox" Width="250" Margin="0,0,10,0"
+                             materialDesign:HintAssist.Hint="Pretraga po nazivu"
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
 
-        <!-- Memberships list -->
-        <DataGrid Grid.Row="2" AutoGenerateColumns="False" 
-                  ItemsSource="{Binding Memberships}" 
-                  SelectedItem="{Binding SelectedMembership}"
-                  IsReadOnly="True" SelectionMode="Single">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Type}" Width="*"/>
-                <DataGridTextColumn Header="Cijena (€)" Binding="{Binding Price}" Width="80"/>
-                <DataGridTextColumn Header="Trajanje (dani)" Binding="{Binding Duration.Days}" Width="100"/>
-                <DataGridTextColumn Header="Broj članova" Binding="{Binding MembershipClubMembers.Count}" Width="100"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                    <Button Content="Nova članarina" Click="AddMembership_Click"
+                            Background="{DynamicResource PrimaryBrush}"
+                            Foreground="White"
+                            Style="{DynamicResource MaterialDesignRaisedButton}"/>
+                </StackPanel>
+            </Border>
 
-        <!-- Add member section -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,10">
-            <ComboBox x:Name="AvailableMembersComboBox" Width="200" Margin="0,0,10,0"
-                      DisplayMemberPath="FullName"
-                      materialDesign:HintAssist.Hint="Odaberite člana"/>
-            <Button Content="Dodaj člana na članarinu" Click="AddMemberToMembership_Click"
-                    Style="{StaticResource MaterialDesignRaisedButton}"/>
-        </StackPanel>
+            <!-- Memberships list Card -->
+            <Border Grid.Row="2" Style="{DynamicResource MaterialCard}" Margin="0,0,0,10">
+                <DataGrid AutoGenerateColumns="False" 
+                          ItemsSource="{Binding Memberships}" 
+                          SelectedItem="{Binding SelectedMembership}"
+                          IsReadOnly="True" 
+                          SelectionMode="Single"
+                          Background="{DynamicResource SurfaceBrush}"
+                          Foreground="{DynamicResource TextBrush}"
+                          GridLinesVisibility="Horizontal"
+                          HeadersVisibility="Column"
+                          RowBackground="{DynamicResource SurfaceBrush}"
+                          AlternatingRowBackground="{DynamicResource BackgroundBrush}"
+                          BorderBrush="{DynamicResource PrimaryBrush}"
+                          BorderThickness="1"
+                          MaxHeight="300">
 
-        <!-- Members with selected membership -->
-        <DataGrid Grid.Row="4" AutoGenerateColumns="False" 
-                  ItemsSource="{Binding MembersWithMembership}"
-                  IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Ime" Binding="{Binding ClubMember.FirstName}" Width="*"/>
-                <DataGridTextColumn Header="Prezime" Binding="{Binding ClubMember.LastName}" Width="*"/>
-                <DataGridTextColumn Header="Datum rođenja" Binding="{Binding ClubMember.BirthDate, StringFormat=d}" Width="120"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+                    <!-- DataGrid Styling -->
+                    <DataGrid.Resources>
+                        <!-- Header Style -->
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                        </Style>
+
+                        <!-- Cell Style -->
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Padding" Value="8"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <!-- Row Style -->
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+                            <Setter Property="Height" Value="35"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource SecondaryBrush}"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Naziv" Binding="{Binding Type}" Width="*" MinWidth="150"/>
+                        <DataGridTextColumn Header="Cijena (€)" Binding="{Binding Price, StringFormat='{}{0:N2}'}" Width="100"/>
+                        <DataGridTextColumn Header="Trajanje (dani)" Binding="{Binding Duration.Days}" Width="120"/>
+                        <DataGridTextColumn Header="Broj članova" Binding="{Binding MembershipClubMembers.Count}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+
+            <!-- Add member section Card -->
+            <Border Grid.Row="3" Style="{DynamicResource MaterialCard}" Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <ComboBox x:Name="AvailableMembersComboBox" Width="250" Margin="0,0,10,0"
+                              DisplayMemberPath="FullName"
+                              ItemsSource="{Binding AvailableMembers}"
+                              SelectedItem="{Binding SelectedMember}"
+                              materialDesign:HintAssist.Hint="Odaberite člana"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
+                    <Button Content="Dodaj člana na članarinu" Click="AddMemberToMembership_Click"
+                            Background="{DynamicResource PrimaryBrush}"
+                            Foreground="White"
+                            Style="{DynamicResource MaterialDesignRaisedButton}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Members with selected membership Card -->
+            <Border Grid.Row="4" Style="{DynamicResource MaterialCard}">
+                <DataGrid AutoGenerateColumns="False" 
+                          ItemsSource="{Binding MembersWithMembership}"
+                          IsReadOnly="True"
+                          Background="{DynamicResource SurfaceBrush}"
+                          Foreground="{DynamicResource TextBrush}"
+                          GridLinesVisibility="Horizontal"
+                          HeadersVisibility="Column"
+                          RowBackground="{DynamicResource SurfaceBrush}"
+                          AlternatingRowBackground="{DynamicResource BackgroundBrush}"
+                          BorderBrush="{DynamicResource PrimaryBrush}"
+                          BorderThickness="1"
+                          MaxHeight="300">
+
+                    <!-- DataGrid Styling -->
+                    <DataGrid.Resources>
+                        <!-- Header Style -->
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                        </Style>
+
+                        <!-- Cell Style -->
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Padding" Value="8"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+
+                        <!-- Row Style -->
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+                            <Setter Property="Height" Value="35"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource SecondaryBrush}"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Ime" Binding="{Binding ClubMember.FirstName}" Width="*" MinWidth="100"/>
+                        <DataGridTextColumn Header="Prezime" Binding="{Binding ClubMember.LastName}" Width="*" MinWidth="100"/>
+                        <DataGridTextColumn Header="Datum rođenja" Binding="{Binding ClubMember.BirthDate, StringFormat=d}" Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

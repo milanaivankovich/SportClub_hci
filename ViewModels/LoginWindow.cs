@@ -5,6 +5,7 @@ using SportClub.Data;
 using System.Linq;
 using System.Windows;
 using SportClub.Views;
+using SportClub.Services;
 
 namespace SportClub.ViewModels
 {
@@ -96,6 +97,12 @@ namespace SportClub.ViewModels
                 var user = _context.Users.FirstOrDefault(u => u.Username == Username && u.Password == Password);
                 if (user != null)
                 {
+                    // Postaviti trenutnog korisnika
+                    CurrentUserService.Instance.SetCurrentUser(user);
+
+                    // Učitati tema korisnika
+                    LoadUserTheme(user.IdUser);
+
                     if (_context.Admins.Any(a => a.IdUser == user.IdUser))
                     {
                         MessageBox.Show("Uspješno prijavljen kao Admin!");
@@ -126,13 +133,27 @@ namespace SportClub.ViewModels
             }
         }
 
+        private void LoadUserTheme(int userId)
+        {
+            var settings = _context.UserSettings.FirstOrDefault(us => us.UserId == userId);
+            if (settings != null)
+            {
+                ThemeService.Instance.ApplyTheme(settings.Theme);
+                ThemeService.Instance.ApplyFont(settings.FontFamily, settings.FontSize);
+            }
+            else
+            {
+                ThemeService.Instance.ApplyTheme("Default");
+                ThemeService.Instance.ApplyFont("Segoe UI", 14);
+            }
+        }
+
         private void OpenMainWindowAdmin()
         {
             var mainWindow = new MainWindowAdmin();
             mainWindow.Show();
             Application.Current.Windows.OfType<LoginWindow>().FirstOrDefault()?.Close();
         }
-
 
         private void OpenMainWindowInstructor()
         {

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportClub.Data;
 
@@ -10,9 +11,11 @@ using SportClub.Data;
 namespace SportClub.Migrations
 {
     [DbContext(typeof(SportClubContext))]
-    partial class SportClubContextModelSnapshot : ModelSnapshot
+    [Migration("20250915205513_userControl")]
+    partial class userControl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.8");

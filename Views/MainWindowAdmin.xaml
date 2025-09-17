@@ -1,4 +1,4 @@
-<Window x:Class="SportClub.Views.MainWindowAdmin"
+﻿<Window x:Class="SportClub.Views.MainWindowAdmin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,40 +6,47 @@
         xmlns:local="clr-namespace:SportClub.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="SportClub Admin" Height="720" Width="1280"
-        Foreground="{DynamicResource MaterialDesignBody}"
+        Title="SportClub Admin" Height="720" Width="900"
+        Background="{DynamicResource BackgroundBrush}"
+        Foreground="{DynamicResource TextBrush}"
         FontFamily="Segoe UI">
-
-    <Window.Resources>
-        <Style x:Key="MenuItemStyle" TargetType="MenuItem">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#3D3D3D"/>
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-                <Trigger Property="Tag" Value="Active">
-                    <Setter Property="Background" Value="#3D3D3D"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="FontWeight" Value="Bold"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
 
     <DockPanel Background="{DynamicResource MaterialDesignBackground}">
         <!-- Navigacioni bar -->
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-            <Menu VerticalAlignment="Center" Background="Transparent"
-                  HorizontalAlignment="Left"
+        <Grid DockPanel.Dock="Top" Background="{DynamicResource SurfaceBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Menu Grid.Column="0" VerticalAlignment="Center" 
+                  Background="{DynamicResource SurfaceBrush}"
+                  Foreground="{DynamicResource TextBrush}"
                   FontSize="14" FontFamily="Segoe UI">
-                <MenuItem Header="Instruktori" Click="OpenInstruktori" x:Name="InstruktoriMenuItem" Style="{StaticResource MenuItemStyle}" Tag=""/>
-                <MenuItem Header="Takmicenja" Click="OpenTakmicenja" x:Name="TakmicenjaMenuItem" Style="{StaticResource MenuItemStyle}" Tag=""/>
-                <MenuItem Header="Clanarine" Click="OpenClanarine" x:Name="ClanarineMenuItem" Style="{StaticResource MenuItemStyle}" Tag=""/>
-                <MenuItem Header="Podesavanje" Click="OpenPodesavanje" x:Name="PodesavanjeMenuItem" Style="{StaticResource MenuItemStyle}" Tag=""/>
+                <MenuItem Header="Instruktori" Click="OpenInstruktori" x:Name="InstruktoriMenuItem" 
+                         Style="{DynamicResource MenuItemStyle}" Tag=""/>
+                <MenuItem Header="Takmicenja" Click="OpenTakmicenja" x:Name="TakmicenjaMenuItem" 
+                         Style="{DynamicResource MenuItemStyle}" Tag=""/>
+                <MenuItem Header="Clanarine" Click="OpenClanarine" x:Name="ClanarineMenuItem" 
+                         Style="{DynamicResource MenuItemStyle}" Tag=""/>
+                <MenuItem Header="Podesavanje" Click="OpenPodesavanje" x:Name="PodesavanjeMenuItem" 
+                         Style="{DynamicResource MenuItemStyle}" Tag=""/>
             </Menu>
-        </StackPanel>
+
+            <!-- Logout button on the right side -->
+            <Button Grid.Column="2" 
+                    Content="Odjavi me" 
+                    Click="LogoutButton_Click"
+                    Style="{DynamicResource MaterialDesignOutlinedButton}"
+                    Background="Transparent"
+                    Margin="0,0,20,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Width="100"
+                    Foreground="{DynamicResource TextBrush}"
+                    BorderBrush="{DynamicResource PrimaryBrush}"/>
+        </Grid>
         <ContentControl x:Name="MainContent" />
     </DockPanel>
 </Window>
