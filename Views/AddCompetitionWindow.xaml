@@ -5,61 +5,188 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Dodavanje Takmičenja" Height="450" Width="400"
-        WindowStartupLocation="CenterScreen">
+        Title="Dodavanje Takmičenja" Height="650" Width="400"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource BackgroundBrush}">
 
     <Window.Resources>
+        <!-- Dynamic TextBox Style -->
         <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
             <Setter Property="Margin" Value="0,5,0,15"/>
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="materialDesign:HintAssist.Foreground" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}"/>
         </Style>
+
+        <!-- Dynamic Button Style -->
         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
             <Setter Property="Margin" Value="10,0,0,0"/>
             <Setter Property="Width" Value="100"/>
+            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="4"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource SecondaryBrush}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource SecondaryBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Dynamic DatePicker Style -->
+        <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="materialDesign:HintAssist.Foreground" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="Margin" Value="0,5,0,10"/>
+        </Style>
+
+        <!-- Dynamic TextBlock Style for Labels -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
         </Style>
     </Window.Resources>
 
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <!-- Main Content Card -->
+    <Border Style="{DynamicResource MaterialCard}" Margin="0">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        <!-- Naziv -->
-        <TextBlock Grid.Row="0" Text="Naziv:" Margin="0,0,0,5" FontWeight="Bold"/>
-        <TextBox x:Name="NazivTextBox" Grid.Row="1"/>
+            <!-- Form Title -->
+            <TextBlock Grid.Row="0" 
+                      Text="Novo Takmičenje" 
+                      FontSize="20" 
+                      FontWeight="Bold"
+                      Foreground="{DynamicResource PrimaryBrush}"
+                      HorizontalAlignment="Center"
+                      Margin="0,0,0,20"/>
 
-        <!-- Mjesto -->
-        <TextBlock Grid.Row="2" Text="Mjesto:" Margin="0,0,0,5" FontWeight="Bold"/>
-        <TextBox x:Name="MjestoTextBox" Grid.Row="3"/>
+            <!-- Naziv -->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Naziv:"/>
+                <TextBox x:Name="NazivTextBox" 
+                        Grid.Row="1"
+                        materialDesign:HintAssist.Hint="Unesite naziv takmičenja"
+                        materialDesign:HintAssist.IsFloating="False"/>
+            </Grid>
 
-        <!-- Datum -->
-        <TextBlock Grid.Row="4" Text="Datum:" Margin="0,0,0,5" FontWeight="Bold"/>
-        <DatePicker x:Name="DatumDatePicker" Grid.Row="5" 
-                   Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                   Margin="0,5,0,10"/>
+            <!-- Mjesto -->
+            <Grid Grid.Row="2" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Mjesto:"/>
+                <TextBox x:Name="MjestoTextBox" 
+                        Grid.Row="1"
+                        materialDesign:HintAssist.Hint="Unesite mjesto održavanja"
+                        materialDesign:HintAssist.IsFloating="False"/>
+            </Grid>
 
-        <!-- Vrijeme -->
-        <TextBlock Grid.Row="6" Text="Vrijeme:" Margin="0,0,0,5" FontWeight="Bold"/>
-        <Grid Grid.Row="7" Margin="0,5,0,20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBox x:Name="VrijemeTextBox" Margin="0,0,10,0"/>
-            <Button Grid.Column="1" Content="Sada" Click="SetCurrentTime_Click"/>
+            <!-- Datum -->
+            <Grid Grid.Row="3" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Datum:"/>
+                <DatePicker x:Name="DatumDatePicker" 
+                           Grid.Row="1"
+                           materialDesign:HintAssist.Hint="Izaberite datum"
+                           materialDesign:HintAssist.IsFloating="False"/>
+            </Grid>
+
+            <!-- Vrijeme -->
+            <Grid Grid.Row="4" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Vrijeme:"/>
+                <Grid Grid.Row="1" Margin="0,5,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="VrijemeTextBox" 
+                            Margin="0,0,10,0"
+                            materialDesign:HintAssist.Hint="HH:mm"
+                            materialDesign:HintAssist.IsFloating="False"
+                            PreviewTextInput="VrijemeTextBox_PreviewTextInput"/>
+                    <Button Grid.Column="1" 
+                           Content="Sada" 
+                           Click="SetCurrentTime_Click"/>
+                </Grid>
+            </Grid>
+
+            <!-- Buttons -->
+            <StackPanel Grid.Row="8" 
+                       Orientation="Horizontal" 
+                       HorizontalAlignment="Right" 
+                       Margin="0,20,0,0">
+
+                <Button Content="Sačuvaj" 
+                       Click="SaveButton_Click"
+                       materialDesign:ButtonAssist.CornerRadius="4">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Width" Value="100"/>
+                            <Setter Property="Height" Value="36"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource SecondaryBrush}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button Content="Otkaži" 
+                       Click="CancelButton_Click"
+                       Margin="10,0,0,0"
+                       materialDesign:ButtonAssist.CornerRadius="4">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
+                            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}"/>
+                            <Setter Property="Width" Value="100"/>
+                            <Setter Property="Height" Value="36"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Color="{DynamicResource PrimaryColor}" Opacity="0.1"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
         </Grid>
-
-        <!-- Buttons -->
-        <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-            <Button Content="Sačuvaj" Click="SaveButton_Click"/>
-            <Button Content="Otkaži" Click="CancelButton_Click" Margin="10,0,0,0"/>
-        </StackPanel>
-    </Grid>
+    </Border>
 </Window>
