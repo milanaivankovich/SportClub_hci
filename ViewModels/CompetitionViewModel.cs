@@ -86,7 +86,7 @@ namespace SportClub.ViewModels
         {
             if (SelectedCompetition != null)
             {
-                // Učitaj trenutne učesnike takmičenja iz baze
+                
                 var currentParticipants = _context.Competitions
                     .Where(c => c.IdCompetition == SelectedCompetition.IdCompetition)
                     .Include(c => c.ClubMembers)
@@ -99,7 +99,7 @@ namespace SportClub.ViewModels
                     SelectedCompetitionParticipants.Add(participant);
                 }
 
-                // Učitaj dostupne članove (oni koji nisu učesnici trenutnog takmičenja)
+               
                 var participantIds = currentParticipants.Select(p => p.IdClubMember).ToList();
                 var availableMembers = AllMembers.Where(m => !participantIds.Contains(m.IdClubMember)).ToList();
 

@@ -19,7 +19,7 @@ namespace SportClub.Models
 
         public bool Active { get; set; }
 
-        // Dodano FullName properti za data binding
+        
         public string FullName => $"{FirstName} {LastName}";
 
         public virtual ICollection<MembershipClubMember> MembershipClubMembers { get; set; } = new List<MembershipClubMember>();

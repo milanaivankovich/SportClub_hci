@@ -2,32 +2,30 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
-    <!-- Colors -->
+
     <Color x:Key="PrimaryColor">#8B0000</Color>
     <Color x:Key="SecondaryColor">#FF6347</Color>
     <Color x:Key="BackgroundColor">#F5F5F5</Color>
     <Color x:Key="TextColor">#333333</Color>
     <Color x:Key="SurfaceColor">#FFFFFF</Color>
 
-    <!-- Brushes -->
+
     <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource PrimaryColor}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{DynamicResource SecondaryColor}"/>
     <SolidColorBrush x:Key="BackgroundBrush" Color="{DynamicResource BackgroundColor}"/>
     <SolidColorBrush x:Key="TextBrush" Color="{DynamicResource TextColor}"/>
     <SolidColorBrush x:Key="SurfaceBrush" Color="{DynamicResource SurfaceColor}"/>
 
-    <!-- Material Design Colors -->
     <Color x:Key="Primary200">#B39DDB</Color>
     <Color x:Key="Primary500">#9C27B0</Color>
     <Color x:Key="Primary700">#7B1FA2</Color>
 
-    <!-- Menu Styles -->
+ 
     <Style TargetType="Menu">
         <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
     </Style>
 
-    <!-- MenuItem Styles -->
     <Style x:Key="MenuItemStyle" TargetType="MenuItem">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
@@ -46,7 +44,7 @@
         </Style.Triggers>
     </Style>
 
-    <!-- Button Styles -->
+
     <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
         <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
         <Setter Property="Foreground" Value="White"/>
@@ -56,7 +54,7 @@
         <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="4"/>
     </Style>
 
-    <!-- TextBox Styles -->
+
     <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
         <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
@@ -64,7 +62,6 @@
         <Setter Property="Margin" Value="0,8"/>
     </Style>
 
-    <!-- PasswordBox Styles -->
     <Style TargetType="PasswordBox" BasedOn="{StaticResource MaterialDesignOutlinedPasswordBox}">
         <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
@@ -72,7 +69,7 @@
         <Setter Property="Margin" Value="0,8"/>
     </Style>
 
-    <!-- ComboBox Styles -->
+
     <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignOutlinedComboBox}">
         <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
@@ -80,7 +77,7 @@
         <Setter Property="Margin" Value="0,8"/>
     </Style>
 
-    <!-- DatePicker Styles -->
+
     <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
         <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
@@ -88,13 +85,13 @@
         <Setter Property="Margin" Value="0,8"/>
     </Style>
 
-    <!-- CheckBox Styles -->
+
     <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
         <Setter Property="Margin" Value="0,8"/>
     </Style>
 
-    <!-- GroupBox Styles -->
+
     <Style TargetType="GroupBox" BasedOn="{StaticResource MaterialDesignGroupBox}">
         <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
@@ -103,7 +100,7 @@
         <Setter Property="Padding" Value="16"/>
     </Style>
 
-    <!-- Card Style -->
+ 
     <Style x:Key="MaterialCard" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
         <Setter Property="CornerRadius" Value="8"/>

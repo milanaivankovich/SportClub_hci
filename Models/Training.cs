@@ -10,17 +10,15 @@ namespace SportClub.Models
     public class Training
     {
         [Key]
-        public int IdTraining { get; set; }  // idTrening
+        public int IdTraining { get; set; }  
 
         [Required, MaxLength(45)]
-        public string Name { get; set; }  // Naziv
+        public string Name { get; set; } 
 
         [MaxLength(45)]
-        public string Type { get; set; }  // Tip
+        public string Type { get; set; } 
 
-        public DateTime DateTime { get; set; }  // DatumVrijeme
-
-        // Navigacione propertije
+        public DateTime DateTime { get; set; }  
         public virtual ICollection<Instructor> Instructors { get; set; } = new List<Instructor>();
         public virtual ICollection<Attendance> Attendances { get; set; } = new List<Attendance>();
     }

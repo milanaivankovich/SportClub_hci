@@ -11,14 +11,14 @@ namespace SportClub.Views
         {
             InitializeComponent();
 
-            // Koristi CurrentUserService da dobiješ ID trenutno ulogovanog korisnika
+            
             if (CurrentUserService.Instance.IsLoggedIn)
             {
                 DataContext = new SettingsViewModel(CurrentUserService.Instance.CurrentUser.IdUser);
             }
             else
             {
-                // Fallback - možda treba redirect na login
+                 
                 DataContext = new SettingsViewModel();
             }
         }

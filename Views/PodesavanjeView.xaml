@@ -30,14 +30,14 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <StackPanel Margin="24,16">
 
-            <!-- Header -->
+             
             <TextBlock Text="Podešavanja"
                        Style="{StaticResource MaterialDesignHeadline4TextBlock}"
                        Foreground="{DynamicResource PrimaryBrush}"
                        HorizontalAlignment="Center"
                        Margin="0,0,0,24"/>
 
-            <!-- Password Change Card -->
+            
             <materialDesign:Card Style="{StaticResource SettingsCard}">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
@@ -86,7 +86,7 @@
                 </StackPanel>
             </materialDesign:Card>
 
-            <!-- Appearance Settings Card -->
+             
             <materialDesign:Card Style="{StaticResource SettingsCard}">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
@@ -100,7 +100,7 @@
                                    VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <!-- Theme Selection -->
+                     
                     <TextBlock Text="Tema aplikacije" Style="{StaticResource FieldLabel}"/>
                     <ComboBox ItemsSource="{Binding AvailableThemes}"
                               SelectedItem="{Binding SelectedTheme}"
@@ -115,7 +115,7 @@
                         </ComboBox.ItemContainerStyle>
                     </ComboBox>
 
-                    <!-- Font Selection -->
+                    
                     <TextBlock Text="Font aplikacije" Style="{StaticResource FieldLabel}"/>
                     <ComboBox ItemsSource="{Binding AvailableFonts}"
                               SelectedItem="{Binding SelectedFont}"
@@ -135,7 +135,7 @@
                         </ComboBox.ItemContainerStyle>
                     </ComboBox>
 
-                    <!-- Font Size Selection -->
+                    
                     <TextBlock Text="Veličina fonta" Style="{StaticResource FieldLabel}"/>
                     <ComboBox ItemsSource="{Binding AvailableFontSizes}"
                               SelectedItem="{Binding SelectedFontSize}"
@@ -156,7 +156,7 @@
                         </ComboBox.ItemContainerStyle>
                     </ComboBox>
 
-                    <!-- Theme Preview -->
+                     
                     <Border Background="{DynamicResource SurfaceBrush}"
                             BorderBrush="{DynamicResource PrimaryBrush}"
                             BorderThickness="1"
@@ -176,7 +176,7 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- Info Text -->
+                    
                     <Border Background="{DynamicResource PrimaryBrush}"
                             Opacity="0.1"
                             CornerRadius="4"

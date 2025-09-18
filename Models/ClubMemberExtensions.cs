@@ -1,5 +1,4 @@
-﻿// ClubMemberExtensions.cs
-namespace SportClub.Models
+﻿namespace SportClub.Models
 {
     public static class ClubMemberExtensions
     {

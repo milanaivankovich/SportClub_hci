@@ -28,7 +28,7 @@ namespace SportClub.ViewModels
 
         public MainInstructorViewModel()
         {
-            // Default to Instruktori view
+            
             CurrentView = new InstruktoriView();
         }
 

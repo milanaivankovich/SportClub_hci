@@ -10,18 +10,18 @@ namespace SportClub.Models
     public class User
     {
         [Key]
-        public int IdUser { get; set; }  // idKorisnik
+        public int IdUser { get; set; }  
 
         [Required, MaxLength(45)]
-        public string FirstName { get; set; }  // Ime
+        public string FirstName { get; set; }  
 
         [Required, MaxLength(45)]
-        public string LastName { get; set; }  // Prezime
+        public string LastName { get; set; }  
 
         [Required, MaxLength(45)]
-        public string Username { get; set; }  // KorisnickoIme
+        public string Username { get; set; }  
 
-        [Required, MaxLength(45)]  // TODO: Hashuj lozinku u produkciji!
+        [Required, MaxLength(45)]  
         public string Password { get; set; }
     }
 }

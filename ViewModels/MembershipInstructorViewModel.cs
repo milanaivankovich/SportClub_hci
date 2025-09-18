@@ -26,7 +26,6 @@ namespace SportClub.ViewModels
 
         private void LoadMemberships()
         {
-            // Učitaj članarine sa svim povezanim podacima
             _allMemberships = _context.Memberships
                 .Include(m => m.MembershipClubMembers)
                 .ThenInclude(mcm => mcm.ClubMember)
@@ -84,13 +83,13 @@ namespace SportClub.ViewModels
 
             if (SelectedMembership != null)
             {
-                // Dobij IDs članova koji već imaju ovu članarinu
+                
                 var membersWithThisMembership = _context.MembershipClubMembers
                     .Where(mcm => mcm.IdMembership == SelectedMembership.IdMembership)
                     .Select(mcm => mcm.IdClubMember)
                     .ToList();
 
-                // Filtriraj samo članove koji NEMAJU ovu članarinu
+               
                 var availableMembers = allActiveMembers
                     .Where(m => !membersWithThisMembership.Contains(m.IdClubMember))
                     .ToList();
@@ -99,7 +98,7 @@ namespace SportClub.ViewModels
             }
             else
             {
-                // Ako nema odabrane članarine, pokaži sve aktivne članove
+               
                 AvailableMembers = allActiveMembers;
             }
 
@@ -118,7 +117,7 @@ namespace SportClub.ViewModels
             _context.Memberships.Add(newMembership);
             _context.SaveChanges();
 
-            // Osveži listu članarina
+           
             LoadMemberships();
             OnPropertyChanged(nameof(Memberships));
         }
@@ -127,7 +126,7 @@ namespace SportClub.ViewModels
         {
             if (SelectedMembership != null && member != null)
             {
-                // Provjeri da član već nema ovu članarinu
+               
                 var existingMembership = _context.MembershipClubMembers
                     .FirstOrDefault(mcm => mcm.IdClubMember == member.IdClubMember &&
                                           mcm.IdMembership == SelectedMembership.IdMembership);
@@ -146,9 +145,9 @@ namespace SportClub.ViewModels
                 _context.MembershipClubMembers.Add(membershipClubMember);
                 _context.SaveChanges();
 
-                // Osveži podatke za trenutno odabranu članarinu
+                
                 RefreshSelectedMembership();
-                LoadAvailableMembers(); // Osveži listu dostupnih članova
+                LoadAvailableMembers(); 
             }
         }
 
@@ -156,7 +155,7 @@ namespace SportClub.ViewModels
         {
             if (SelectedMembership != null)
             {
-                // Ponovo učitaj odabranu članarinu sa ažuriranim podacima
+                
                 var refreshedMembership = _context.Memberships
                     .Include(m => m.MembershipClubMembers)
                     .ThenInclude(mcm => mcm.ClubMember)
@@ -164,7 +163,7 @@ namespace SportClub.ViewModels
 
                 if (refreshedMembership != null)
                 {
-                    // Ažuriraj članarinu u listi
+                    
                     var membershipInList = _allMemberships.FirstOrDefault(m => m.IdMembership == SelectedMembership.IdMembership);
                     if (membershipInList != null)
                     {

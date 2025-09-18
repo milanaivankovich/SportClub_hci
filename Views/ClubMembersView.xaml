@@ -22,7 +22,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Header Card -->
+            
             <Border Grid.Row="0" Style="{DynamicResource MaterialCard}" Margin="10,10,10,5">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button Content="Pregled Članova" 
@@ -52,7 +52,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- Data Grid Card -->
+            
             <Border Grid.Row="1" Style="{DynamicResource MaterialCard}" Margin="10,5,10,10">
                 <DataGrid ItemsSource="{Binding ClubMembers}" 
                           SelectedItem="{Binding SelectedClubMember}" 
@@ -71,9 +71,9 @@
                           SelectionMode="Single"
                           MaxHeight="400">
 
-                    <!-- DataGrid Styling -->
+                     
                     <DataGrid.Resources>
-                        <!-- Header Style -->
+                        
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
                             <Setter Property="Foreground" Value="White"/>
@@ -84,7 +84,7 @@
                             <Setter Property="BorderThickness" Value="0,0,1,0"/>
                         </Style>
 
-                        <!-- Cell Style -->
+                         
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background" Value="Transparent"/>
                             <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
@@ -99,7 +99,7 @@
                             </Style.Triggers>
                         </Style>
 
-                        <!-- Row Style -->
+                         
                         <Style TargetType="DataGridRow">
                             <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
                             <Setter Property="Height" Value="35"/>
@@ -115,7 +115,7 @@
                             </Style.Triggers>
                         </Style>
 
-                        <!-- CheckBox Column Styling -->
+                        
                         <Style TargetType="CheckBox" x:Key="DataGridCheckBoxStyle">
                             <Setter Property="HorizontalAlignment" Value="Center"/>
                             <Setter Property="VerticalAlignment" Value="Center"/>

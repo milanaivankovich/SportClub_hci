@@ -12,7 +12,7 @@
         FontFamily="Segoe UI">
 
     <DockPanel Background="{DynamicResource MaterialDesignBackground}">
-        <!-- Navigacioni bar -->
+        
         <Grid DockPanel.Dock="Top" Background="{DynamicResource SurfaceBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -36,7 +36,7 @@
                          Style="{DynamicResource MenuItemStyle}" Tag=""/>
             </Menu>
 
-            <!-- Logout button on the right side -->
+            
             <Button Grid.Column="2" 
                     Content="Odjavi me" 
                     Click="LogoutButton_Click"

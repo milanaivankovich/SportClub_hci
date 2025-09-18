@@ -14,23 +14,23 @@ namespace SportClub.Views
         {
             InitializeComponent();
 
-            // Apply current theme to window
+           
             ApplyTheme();
 
-            // Subscribe to theme change events
+           
             ThemeService.Instance.ThemeChanged += OnThemeChanged;
         }
 
         private void ApplyTheme()
         {
-            // Ensure the window background is properly set from the theme
+           
             var backgroundBrush = TryFindResource("BackgroundBrush") as Brush;
             if (backgroundBrush != null)
             {
                 this.Background = backgroundBrush;
             }
 
-            // Apply global font settings if they exist
+            
             var fontFamily = Application.Current.Resources["GlobalFontFamily"] as FontFamily;
             var fontSize = Application.Current.Resources["GlobalFontSize"] as double?;
 
@@ -52,7 +52,7 @@ namespace SportClub.Views
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // Validation with themed message box
+            
             if (string.IsNullOrWhiteSpace(ImeTextBox.Text) ||
                 string.IsNullOrWhiteSpace(PrezimeTextBox.Text) ||
                 string.IsNullOrWhiteSpace(UsernameTextBox.Text) ||
@@ -62,7 +62,7 @@ namespace SportClub.Views
                 return;
             }
 
-            // Additional validation for password length
+           
             if (PasswordBox.Password.Length < 6)
             {
                 ShowThemedMessageBox("Upozorenje", "Lozinka mora imati najmanje 6 karaktera!", MessageBoxImage.Warning);
@@ -74,7 +74,7 @@ namespace SportClub.Views
                 FirstName = ImeTextBox.Text.Trim(),
                 LastName = PrezimeTextBox.Text.Trim(),
                 Username = UsernameTextBox.Text.Trim(),
-                Password = PasswordBox.Password // Note: In production, hash the password
+                Password = PasswordBox.Password 
             };
 
             DialogResult = true;
@@ -89,7 +89,7 @@ namespace SportClub.Views
 
         private void ShowThemedMessageBox(string title, string message, MessageBoxImage icon)
         {
-            // Create a custom themed message box window
+           
             var messageWindow = new Window
             {
                 Title = title,
@@ -133,7 +133,7 @@ namespace SportClub.Views
 
         protected override void OnClosed(EventArgs e)
         {
-            // Unsubscribe from theme change events
+           
             ThemeService.Instance.ThemeChanged -= OnThemeChanged;
             base.OnClosed(e);
         }

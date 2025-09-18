@@ -22,10 +22,10 @@ namespace SportClub.Views
             _viewModel = new AttendanceViewModel();
             DataContext = _viewModel;
 
-            // Pretplati se na promjenu odabranog treninga
+           
             _viewModel.PropertyChanged += ViewModel_PropertyChanged;
 
-            // Pretplati se na Unloaded događaj
+            
             this.Unloaded += AttendanceView_Unloaded;
 
             LoadMembers();
@@ -33,13 +33,13 @@ namespace SportClub.Views
 
         private void AttendanceView_Unloaded(object sender, RoutedEventArgs e)
         {
-            // Otkloni pretplatu na događaje
+            
             if (_viewModel != null)
             {
                 _viewModel.PropertyChanged -= ViewModel_PropertyChanged;
             }
 
-            // Oslobodi resurse
+            
             _context?.Dispose();
         }
 
@@ -47,7 +47,7 @@ namespace SportClub.Views
         {
             if (e.PropertyName == nameof(_viewModel.SelectedTraining))
             {
-                LoadMembers(); // Osveži listu članova kada se promeni odabrani trening
+                LoadMembers(); 
             }
         }
 
@@ -57,13 +57,13 @@ namespace SportClub.Views
 
             if (_viewModel.SelectedTraining != null)
             {
-                // Dobij IDs članova koji su već prisutni na odabranom treningu
+               
                 var attendingMemberIds = _context.Attendances
                     .Where(a => a.IdTraining == _viewModel.SelectedTraining.IdTraining)
                     .Select(a => a.IdClubMember)
                     .ToList();
 
-                // Filtriraj samo članove koji NISU prisutni na treningu
+                
                 var availableMembers = allActiveMembers
                     .Where(m => !attendingMemberIds.Contains(m.IdClubMember))
                     .ToList();
@@ -72,7 +72,7 @@ namespace SportClub.Views
             }
             else
             {
-                // Ako nema odabranog treninga, pokaži sve aktivne članove
+                
                 MembersComboBox.ItemsSource = allActiveMembers;
             }
         }
@@ -94,7 +94,7 @@ namespace SportClub.Views
                 {
                     _viewModel.AddMemberToTraining(selectedMember);
                     MembersComboBox.SelectedItem = null;
-                    LoadMembers(); // Osveži listu dostupnih članova
+                    LoadMembers(); 
                     MessageBox.Show("Član je uspješno dodan na trening.", "Uspjeh", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)

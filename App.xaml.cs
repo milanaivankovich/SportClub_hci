@@ -11,7 +11,7 @@ namespace SportClub
         {
             var app = (App)Current;
 
-            // Remove existing theme dictionaries
+             
             var dictionariesToRemove = new List<ResourceDictionary>();
             foreach (ResourceDictionary dict in Current.Resources.MergedDictionaries)
             {
@@ -29,7 +29,7 @@ namespace SportClub
                 Current.Resources.MergedDictionaries.Remove(dict);
             }
 
-            // Add the selected theme with correct path
+           
             ResourceDictionary newTheme;
             switch (themeName)
             {

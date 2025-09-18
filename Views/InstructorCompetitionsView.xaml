@@ -19,7 +19,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Search Box Card -->
+        
         <Border Grid.Row="0" Style="{DynamicResource MaterialCard}" Margin="0,0,0,10">
             <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                      materialDesign:HintAssist.Hint="Pretraži takmičenja po nazivu..."
@@ -27,14 +27,14 @@
                      Margin="10"/>
         </Border>
 
-        <!-- Main Content -->
+         
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Competitions List Card -->
+             
             <Border Grid.Column="0" Margin="0,0,10,0" Style="{DynamicResource MaterialCard}">
                 <DockPanel>
                     <TextBlock DockPanel.Dock="Top" Text="Takmičenja" 
@@ -68,7 +68,7 @@
                 </DockPanel>
             </Border>
 
-            <!-- Competition Details and Participants Card -->
+            
             <Border Grid.Column="1" Style="{DynamicResource MaterialCard}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -77,7 +77,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Competition Details -->
+                    
                     <Border Grid.Row="0" Margin="0,0,0,10" Style="{DynamicResource MaterialCard}" Padding="10">
                         <StackPanel>
                             <TextBlock Text="Detalji takmičenja" 
@@ -118,7 +118,7 @@
                         </StackPanel>
                     </Border>
 
-                    <!-- Participants Management -->
+                    
                     <Grid Grid.Row="1" Margin="0,0,0,10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -126,7 +126,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Available Members Card -->
+                        
                         <Border Grid.Column="0" Style="{DynamicResource MaterialCard}">
                             <DockPanel>
                                 <TextBlock DockPanel.Dock="Top" Text="Dostupni članovi" 
@@ -160,7 +160,7 @@
                             </DockPanel>
                         </Border>
 
-                        <!-- Buttons -->
+                         
                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10">
                             <Button Content="➡" ToolTip="Dodaj takmičara" 
                                     Click="AddParticipant_Click" 
@@ -176,7 +176,7 @@
                                     Style="{DynamicResource MaterialDesignRaisedButton}"/>
                         </StackPanel>
 
-                        <!-- Current Participants Card -->
+                        
                         <Border Grid.Column="2" Style="{DynamicResource MaterialCard}">
                             <DockPanel>
                                 <TextBlock DockPanel.Dock="Top" Text="Takmičari" 
@@ -211,7 +211,7 @@
                         </Border>
                     </Grid>
 
-                    <!-- Save Button -->
+                     
                     <Button Grid.Row="2" Content="Sačuvaj promjene" 
                             Click="SaveChanges_Click" 
                             HorizontalAlignment="Right"

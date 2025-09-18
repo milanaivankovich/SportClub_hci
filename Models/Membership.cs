@@ -14,7 +14,7 @@ namespace SportClub.Models
 
         public int Price { get; set; }
 
-        public TimeSpan Duration { get; set; } // Changed to TimeSpan
+        public TimeSpan Duration { get; set; } 
 
         public virtual ICollection<MembershipClubMember> MembershipClubMembers { get; set; } = new List<MembershipClubMember>();
     }

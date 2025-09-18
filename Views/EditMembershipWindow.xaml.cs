@@ -14,17 +14,16 @@ namespace SportClub.Views
         {
             InitializeComponent();
             _membership = membership;
-
-            // Subscribe to theme changes
+ 
             ThemeService.Instance.ThemeChanged += OnThemeChanged;
 
-            // Apply current theme to window
+             
             ApplyCurrentTheme();
 
-            // Load membership data
+            
             LoadMembershipData();
 
-            // Set focus to first field
+            
             NazivTextBox.Focus();
         }
 
@@ -43,22 +42,21 @@ namespace SportClub.Views
         private void ApplyCurrentTheme()
         {
             try
-            {
-                // Force update of all dynamic resources
+            { 
                 this.UpdateDefaultStyle();
 
-                // Apply background brush if available
+                
                 if (Application.Current.Resources.Contains("BackgroundBrush"))
                 {
                     this.Background = (System.Windows.Media.Brush)Application.Current.Resources["BackgroundBrush"];
                 }
 
-                // Refresh all child elements
+                
                 InvalidateVisual();
             }
             catch (Exception ex)
             {
-                // Log error if needed
+                
                 System.Diagnostics.Debug.WriteLine($"Theme application error: {ex.Message}");
             }
         }
@@ -97,8 +95,7 @@ namespace SportClub.Views
                 TrajanjeTextBox.SelectAll();
                 return;
             }
-
-            // Validate name length
+            
             if (NazivTextBox.Text.Trim().Length < 3)
             {
                 MessageBox.Show("Naziv članarine mora imati najmanje 3 karaktera!",
@@ -134,14 +131,13 @@ namespace SportClub.Views
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
-        {
-            // Handle Enter key to save
+        {  
             if (e.Key == Key.Enter && !e.Handled)
             {
                 SaveButton_Click(this, new RoutedEventArgs());
                 e.Handled = true;
             }
-            // Handle Escape key to cancel
+             
             else if (e.Key == Key.Escape)
             {
                 CancelButton_Click(this, new RoutedEventArgs());
@@ -153,7 +149,7 @@ namespace SportClub.Views
 
         protected override void OnClosed(EventArgs e)
         {
-            // Unsubscribe from theme changes to prevent memory leaks
+             
             ThemeService.Instance.ThemeChanged -= OnThemeChanged;
             base.OnClosed(e);
         }

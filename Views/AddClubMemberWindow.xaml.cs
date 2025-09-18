@@ -13,25 +13,25 @@ namespace SportClub.Views
         public AddClubMemberWindow()
         {
             InitializeComponent();
-            DatumRodjenjaDatePicker.SelectedDate = DateTime.Now.AddYears(-18); // Default to 18 years ago
+            DatumRodjenjaDatePicker.SelectedDate = DateTime.Now.AddYears(-18); 
 
-            // Apply current theme to window
+           
             ApplyTheme();
 
-            // Subscribe to theme change events
+            
             ThemeService.Instance.ThemeChanged += OnThemeChanged;
         }
 
         private void ApplyTheme()
         {
-            // Ensure the window background is properly set from the theme
+            
             var backgroundBrush = TryFindResource("BackgroundBrush") as Brush;
             if (backgroundBrush != null)
             {
                 this.Background = backgroundBrush;
             }
 
-            // Apply global font settings if they exist
+            
             var fontFamily = Application.Current.Resources["GlobalFontFamily"] as FontFamily;
             var fontSize = Application.Current.Resources["GlobalFontSize"] as double?;
 
@@ -53,7 +53,7 @@ namespace SportClub.Views
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // Validation with themed message box
+            
             if (string.IsNullOrWhiteSpace(ImeTextBox.Text) ||
                 string.IsNullOrWhiteSpace(PrezimeTextBox.Text) ||
                 DatumRodjenjaDatePicker.SelectedDate == null)
@@ -62,7 +62,7 @@ namespace SportClub.Views
                 return;
             }
 
-            // Additional validation for birth date
+            
             if (DatumRodjenjaDatePicker.SelectedDate.Value > DateTime.Now)
             {
                 ShowThemedMessageBox("Greška", "Datum rođenja ne može biti u budućnosti!", MessageBoxImage.Error);
@@ -89,7 +89,7 @@ namespace SportClub.Views
 
         private void ShowThemedMessageBox(string title, string message, MessageBoxImage icon)
         {
-            // Create a custom themed message box window
+            
             var messageWindow = new Window
             {
                 Title = title,
@@ -133,7 +133,7 @@ namespace SportClub.Views
 
         protected override void OnClosed(EventArgs e)
         {
-            // Unsubscribe from theme change events
+            
             ThemeService.Instance.ThemeChanged -= OnThemeChanged;
             base.OnClosed(e);
         }

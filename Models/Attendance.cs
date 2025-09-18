@@ -11,9 +11,8 @@ namespace SportClub.Models
     public class Attendance
     {
         [Key]
-        public int IdAttendance { get; set; }  // idPrisustvo
-
-        public DateTime Date { get; set; }  // Datum
+        public int IdAttendance { get; set; }  
+        public DateTime Date { get; set; }  
 
         public int IdClubMember { get; set; }
         [ForeignKey("IdClubMember")]

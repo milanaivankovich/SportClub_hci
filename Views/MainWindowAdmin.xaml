@@ -12,7 +12,7 @@
         FontFamily="Segoe UI">
 
     <DockPanel Background="{DynamicResource MaterialDesignBackground}">
-        <!-- Navigacioni bar -->
+        
         <Grid DockPanel.Dock="Top" Background="{DynamicResource SurfaceBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

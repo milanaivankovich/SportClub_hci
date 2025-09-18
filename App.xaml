@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- Material Design -->
+                
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Indigo" SecondaryColor="Lime" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
@@ -17,7 +17,7 @@
                 <ResourceDictionary Source="/Themes/DefaultTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- Your custom styles -->
+            
             <Style x:Key="CustomTextBoxStyle" TargetType="TextBox">
                 <Setter Property="Foreground" Value="White" />
                 <Setter Property="Background" Value="Transparent" />

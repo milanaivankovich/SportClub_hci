@@ -20,17 +20,17 @@
             <ColumnDefinition Width="0.4*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Left side - Image with shadow -->
+        
         <Image Grid.Column="0" Source="/Resources/climbing.jpg" Stretch="UniformToFill">
             <Image.Effect>
                 <DropShadowEffect ShadowDepth="10" BlurRadius="20" Opacity="0.5" Color="Black"/>
             </Image.Effect>
         </Image>
 
-        <!-- Right side - Login form -->
+        
         <Border Grid.Column="1" Background="{StaticResource LightRedBackground}" BorderBrush="{StaticResource DarkRedBorderBrush}" BorderThickness="2">
             <Grid>
-                <!-- Vertically centered content -->
+                
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="260">
                     <TextBlock Text="Prijavi se!" 
 							   FontSize="28" 
@@ -39,7 +39,7 @@
 							   HorizontalAlignment="Center" 
 							   Margin="0,0,0,30"/>
 
-                    <!-- Username field -->
+                    
                     <Grid Margin="0,0,0,15">
                         <TextBox x:Name="UsernameTextBox"
 								 Height="45"
@@ -78,9 +78,9 @@
 												 Margin="10,0,0,0"/>
                     </Grid>
 
-                    <!-- Password field with visibility toggle -->
+                    
                     <Grid Margin="0,0,0,25">
-                        <!-- Vidljivi password TextBox -->
+                        
                         <TextBox x:Name="PasswordTextBox"
                                  Height="45"
                                  FontSize="14"
@@ -91,7 +91,7 @@
                                  VerticalContentAlignment="Center"
                                  Text="{Binding PasswordText, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <!-- Skriveni password PasswordBox -->
+                       
                         <PasswordBox x:Name="PasswordBox"
                                      Height="45"
                                      FontSize="14"
@@ -113,7 +113,7 @@
                             </PasswordBox.Style>
                         </PasswordBox>
 
-                        <!-- Placeholder text for password -->
+                        
                         <TextBlock Text="Lozinka" 
                                    IsHitTestVisible="False"
                                    Foreground="White"
@@ -124,7 +124,7 @@
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Visibility" Value="Collapsed"/>
                                     <Style.Triggers>
-                                        <!-- Kada je password nevidljiv i prazan -->
+                                       
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
                                                 <Condition Binding="{Binding IsPasswordVisible}" Value="False"/>
@@ -139,7 +139,7 @@
                                             </MultiDataTrigger.Conditions>
                                             <Setter Property="Visibility" Value="Visible"/>
                                         </MultiDataTrigger>
-                                        <!-- Kada je password vidljiv i prazan -->
+                                        
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
                                                 <Condition Binding="{Binding IsPasswordVisible}" Value="True"/>
@@ -167,7 +167,7 @@
                                                  HorizontalAlignment="Left"
                                                  Margin="10,0,0,0"/>
 
-                        <!-- Eye toggle button -->
+                      
                         <ToggleButton x:Name="PasswordVisibilityToggle"
                                       IsChecked="{Binding IsPasswordVisible}"
                                       Width="30"
@@ -206,7 +206,7 @@
                         </ToggleButton>
                     </Grid>
 
-                    <!-- Login button -->
+                   
                     <Button Content="PRIJAVI SE" 
 							Command="{Binding LoginCommand}"
 							Height="45"

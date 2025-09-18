@@ -67,7 +67,7 @@ namespace SportClub.Views
 
                     if (competition != null)
                     {
-                        // Update participants
+                        
                         competition.ClubMembers.Clear();
                         foreach (var participant in _viewModel.SelectedCompetitionParticipants)
                         {
@@ -81,7 +81,7 @@ namespace SportClub.Views
                         _context.SaveChanges();
                         MessageBox.Show("Promjene su uspješno sačuvane!", "Uspjeh", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                        // Reload data after save to reflect changes
+                        
                         LoadData();
                     }
                 }

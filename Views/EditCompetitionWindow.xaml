@@ -10,7 +10,7 @@
         Background="{DynamicResource BackgroundBrush}">
 
     <Window.Resources>
-        <!-- Dynamic TextBox Style -->
+        
         <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
             <Setter Property="Margin" Value="0,5,0,15"/>
             <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
@@ -18,7 +18,7 @@
             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
         </Style>
 
-        <!-- Dynamic Button Style -->
+         
         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
             <Setter Property="Margin" Value="10,0,0,0"/>
             <Setter Property="Width" Value="100"/>
@@ -27,7 +27,7 @@
             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
         </Style>
 
-        <!-- Special style for the "Sada" button -->
+         
         <Style x:Key="CurrentTimeButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
             <Setter Property="Background" Value="{DynamicResource SecondaryBrush}"/>
             <Setter Property="Foreground" Value="White"/>
@@ -36,7 +36,7 @@
             <Setter Property="Margin" Value="0"/>
         </Style>
 
-        <!-- Dynamic DatePicker Style -->
+        
         <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
             <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
@@ -44,14 +44,14 @@
             <Setter Property="Margin" Value="0,5,0,10"/>
         </Style>
 
-        <!-- Dynamic TextBlock Style -->
+         
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
     </Window.Resources>
 
-    <!-- Main Grid with dynamic background -->
+     
     <Grid Margin="20" Background="{DynamicResource BackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -65,19 +65,19 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Naziv -->
+        
         <TextBlock Grid.Row="0" Text="Naziv:" Margin="0,0,0,5"/>
         <TextBox x:Name="NazivTextBox" Grid.Row="1"/>
 
-        <!-- Mjesto -->
+         
         <TextBlock Grid.Row="2" Text="Mjesto:" Margin="0,0,0,5"/>
         <TextBox x:Name="MjestoTextBox" Grid.Row="3"/>
 
-        <!-- Datum -->
+         
         <TextBlock Grid.Row="4" Text="Datum:" Margin="0,0,0,5"/>
         <DatePicker x:Name="DatumDatePicker" Grid.Row="5"/>
 
-        <!-- Vrijeme -->
+         
         <TextBlock Grid.Row="6" Text="Vrijeme:" Margin="0,0,0,5"/>
         <Grid Grid.Row="7" Margin="0,5,0,20">
             <Grid.ColumnDefinitions>
@@ -96,7 +96,7 @@
                     ToolTip="Postavi trenutno vrijeme"/>
         </Grid>
 
-        <!-- Buttons -->
+        
         <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
             <Button Content="Sačuvaj" Click="SaveButton_Click"/>
             <Button Content="Otkaži" Click="CancelButton_Click" Margin="10,0,0,0"/>

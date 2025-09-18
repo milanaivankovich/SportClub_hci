@@ -14,13 +14,13 @@ namespace SportClub.Views
             InitializeComponent();
             _clubMember = clubMember;
 
-            // Subscribe to theme changes
+            
             ThemeService.Instance.ThemeChanged += OnThemeChanged;
 
-            // Apply current theme to window
+             
             ApplyCurrentTheme();
 
-            // Load member data
+             
             LoadMemberData();
         }
 
@@ -41,21 +41,21 @@ namespace SportClub.Views
         {
             try
             {
-                // Force update of all dynamic resources
+                
                 this.UpdateDefaultStyle();
 
-                // Apply background brush if available
+                 
                 if (Application.Current.Resources.Contains("BackgroundBrush"))
                 {
                     this.Background = (System.Windows.Media.Brush)Application.Current.Resources["BackgroundBrush"];
                 }
 
-                // Refresh all child elements
+                 
                 InvalidateVisual();
             }
             catch (Exception ex)
             {
-                // Log error if needed
+                 
                 System.Diagnostics.Debug.WriteLine($"Theme application error: {ex.Message}");
             }
         }
@@ -73,7 +73,7 @@ namespace SportClub.Views
                 return;
             }
 
-            // Validate birth date
+             
             if (DatumRodjenjaDatePicker.SelectedDate > DateTime.Now)
             {
                 MessageBox.Show("Datum rođenja ne može biti u budućnosti!",
@@ -83,7 +83,7 @@ namespace SportClub.Views
                 return;
             }
 
-            // Update member data
+             
             _clubMember.FirstName = ImeTextBox.Text.Trim();
             _clubMember.LastName = PrezimeTextBox.Text.Trim();
             _clubMember.BirthDate = DatumRodjenjaDatePicker.SelectedDate.Value;
@@ -101,7 +101,7 @@ namespace SportClub.Views
 
         protected override void OnClosed(EventArgs e)
         {
-            // Unsubscribe from theme changes to prevent memory leaks
+             
             ThemeService.Instance.ThemeChanged -= OnThemeChanged;
             base.OnClosed(e);
         }

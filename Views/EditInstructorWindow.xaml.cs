@@ -13,7 +13,7 @@ namespace SportClub.Views
         private Instructor _instructor;
         private bool _isPasswordChanged = false;
 
-        // Username validation regex (alphanumeric, underscore, dot, min 3 chars)
+         
         private readonly Regex _usernameRegex = new Regex(@"^[a-zA-Z0-9_.]{3,}$");
 
         public EditInstructorWindow(Instructor instructor)
@@ -40,10 +40,10 @@ namespace SportClub.Views
             PrezimeTextBox.Text = _instructor.LastName;
             UsernameTextBox.Text = _instructor.Username;
 
-            // For existing instructors, show placeholder for password
+            
             if (!string.IsNullOrEmpty(_instructor.Password))
             {
-                PasswordBox.Password = "********"; // Placeholder for existing password
+                PasswordBox.Password = "********";  
                 _isPasswordChanged = false;
             }
         }
@@ -57,28 +57,27 @@ namespace SportClub.Views
         {
             try
             {
-                // Force update of all dynamic resources
+                 
                 this.UpdateDefaultStyle();
-
-                // Apply background brush if available
+ 
                 if (Application.Current.Resources.Contains("BackgroundBrush"))
                 {
                     this.Background = (System.Windows.Media.Brush)Application.Current.Resources["BackgroundBrush"];
                 }
 
-                // Refresh all child elements
+                 
                 InvalidateVisual();
             }
             catch (Exception ex)
             {
-                // Log error if needed
+                 
                 System.Diagnostics.Debug.WriteLine($"Theme application error: {ex.Message}");
             }
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            // Validate required fields
+            
             if (string.IsNullOrWhiteSpace(ImeTextBox.Text) ||
                 string.IsNullOrWhiteSpace(PrezimeTextBox.Text) ||
                 string.IsNullOrWhiteSpace(UsernameTextBox.Text) ||
@@ -91,7 +90,7 @@ namespace SportClub.Views
                 return;
             }
 
-            // Validate name lengths
+             
             if (ImeTextBox.Text.Trim().Length < 2)
             {
                 MessageBox.Show("Ime mora imati najmanje 2 karaktera!",
@@ -112,7 +111,7 @@ namespace SportClub.Views
                 return;
             }
 
-            // Validate username format
+            
             if (!_usernameRegex.IsMatch(UsernameTextBox.Text.Trim()))
             {
                 MessageBox.Show("Korisničko ime mora imati najmanje 3 karaktera i može sadržavati samo slova, brojeve, tačku i podvlaku!",
@@ -124,7 +123,7 @@ namespace SportClub.Views
                 return;
             }
 
-            // Validate password strength (only if password was changed)
+            
             if (_isPasswordChanged && PasswordBox.Password.Length < 4)
             {
                 MessageBox.Show("Lozinka mora imati najmanje 4 karaktera!",
@@ -135,7 +134,7 @@ namespace SportClub.Views
                 return;
             }
 
-            // Check for name format (no numbers in names)
+             
             if (ContainsNumbers(ImeTextBox.Text) || ContainsNumbers(PrezimeTextBox.Text))
             {
                 MessageBox.Show("Ime i prezime ne mogu sadržavati brojeve!",
@@ -147,15 +146,14 @@ namespace SportClub.Views
 
             try
             {
-                // Update instructor data
+                 
                 _instructor.FirstName = CapitalizeFirstLetter(ImeTextBox.Text.Trim());
                 _instructor.LastName = CapitalizeFirstLetter(PrezimeTextBox.Text.Trim());
                 _instructor.Username = UsernameTextBox.Text.Trim().ToLower();
 
-                // Only update password if it was changed
+                 
                 if (_isPasswordChanged)
-                {
-                    // In production, hash the password here
+                {   
                     _instructor.Password = PasswordBox.Password;
                 }
 
@@ -201,13 +199,13 @@ namespace SportClub.Views
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            // Handle Enter key to save
+            
             if (e.Key == Key.Enter && !e.Handled)
             {
                 SaveButton_Click(this, new RoutedEventArgs());
                 e.Handled = true;
             }
-            // Handle Escape key to cancel
+            
             else if (e.Key == Key.Escape)
             {
                 CancelButton_Click(this, new RoutedEventArgs());
@@ -219,7 +217,7 @@ namespace SportClub.Views
 
         protected override void OnClosed(EventArgs e)
         {
-            // Unsubscribe from theme changes to prevent memory leaks
+            
             ThemeService.Instance.ThemeChanged -= OnThemeChanged;
             base.OnClosed(e);
         }

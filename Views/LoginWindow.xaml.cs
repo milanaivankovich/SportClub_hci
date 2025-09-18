@@ -20,7 +20,7 @@ namespace SportClub.Views
                 var passwordBox = sender as PasswordBox;
                 viewModel.Password = passwordBox.Password;
 
-                // Sinhronizuj sa PasswordText ako je password vidljiv
+                 
                 if (viewModel.IsPasswordVisible)
                 {
                     viewModel.PasswordText = passwordBox.Password;
@@ -29,7 +29,7 @@ namespace SportClub.Views
         }
     }
 
-    // Converter for placeholder visibility
+     
     public class StringToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

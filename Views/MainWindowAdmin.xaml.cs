@@ -15,19 +15,19 @@ namespace SportClub.Views
 
         private void MainWindowAdmin_Loaded(object sender, RoutedEventArgs e)
         {
-            // Set default view to Instruktori
+             
             OpenInstruktori(null, null);
         }
 
         private void SetActiveMenuItem(MenuItem activeItem)
         {
-            // Reset all menu items
+            
             InstruktoriMenuItem.Tag = "";
             TakmicenjaMenuItem.Tag = "";
             ClanarineMenuItem.Tag = "";
             PodesavanjeMenuItem.Tag = "";
 
-            // Set the active one
+             
             if (activeItem != null)
             {
                 activeItem.Tag = "Active";
@@ -60,14 +60,13 @@ namespace SportClub.Views
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            // Logout the user
+             
             CurrentUserService.Instance.Logout();
-
-            // Otvori login prozor
+ 
             var loginWindow = new LoginWindow();
             loginWindow.Show();
 
-            // Zatvori trenutni admin prozor
+             
             this.Close();
         }
     }

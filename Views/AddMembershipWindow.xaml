@@ -10,7 +10,7 @@
         Background="{DynamicResource BackgroundBrush}">
 
     <Window.Resources>
-        <!-- Dynamic TextBox Style -->
+       
         <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
             <Setter Property="Margin" Value="0,5,0,15"/>
             <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
@@ -21,7 +21,7 @@
             <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}"/>
         </Style>
 
-        <!-- Dynamic Button Style -->
+       
         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
             <Setter Property="Margin" Value="10,0,0,0"/>
             <Setter Property="Width" Value="100"/>
@@ -37,7 +37,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Dynamic TextBlock Style for Labels -->
+        
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -45,7 +45,7 @@
         </Style>
     </Window.Resources>
 
-    <!-- Main Content Card -->
+    
     <Border Style="{DynamicResource MaterialCard}" Margin="0">
         <Grid Margin="20">
             <Grid.RowDefinitions>
@@ -60,7 +60,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- Form Title -->
+           
             <TextBlock Grid.Row="0" 
                       Text="Nova Članarina" 
                       FontSize="20" 
@@ -69,7 +69,7 @@
                       HorizontalAlignment="Center"
                       Margin="0,0,0,20"/>
 
-            <!-- Naziv -->
+            
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -82,7 +82,7 @@
                         materialDesign:HintAssist.IsFloating="False"/>
             </Grid>
 
-            <!-- Cijena -->
+           
             <Grid Grid.Row="2" Margin="0,10,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -96,7 +96,7 @@
                         PreviewTextInput="CijenaTextBox_PreviewTextInput"/>
             </Grid>
 
-            <!-- Trajanje -->
+            
             <Grid Grid.Row="3" Margin="0,10,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -111,7 +111,7 @@
                         Margin="0,0,0,20"/>
             </Grid>
 
-            <!-- Buttons -->
+            
             <StackPanel Grid.Row="8" 
                        Orientation="Horizontal" 
                        HorizontalAlignment="Right" 

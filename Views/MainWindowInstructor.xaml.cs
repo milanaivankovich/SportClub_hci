@@ -14,21 +14,20 @@ namespace SportClub.Views
         }
 
         private void MainWindowInstructor_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Set default view to Instruktori
+        { 
             OpenClanovi(null, null);
         }
 
         private void SetActiveMenuItem(MenuItem activeItem)
         {
-            // Reset all menu items
+             
             ClanoviMenuItem.Tag = "";
             PrisustvoMenuItem.Tag = "";
             TakmicenjeMenuItem.Tag = "";
             ClanarineMenuItem.Tag = "";
             PodesavanjeMenuItem.Tag = "";
 
-            // Set the active one
+             
             if (activeItem != null)
             {
                 activeItem.Tag = "Active";
@@ -49,7 +48,7 @@ namespace SportClub.Views
 
         private void OpenClanarine(object sender, RoutedEventArgs e)
         {
-            MainContent.Content = new MembershipInstructorView(); // Ensure ClanarineView exists
+            MainContent.Content = new MembershipInstructorView();  
             SetActiveMenuItem(ClanarineMenuItem);
         }
 
@@ -67,10 +66,10 @@ namespace SportClub.Views
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            // Logout the user
+             
             CurrentUserService.Instance.Logout();
 
-            // Otvori login prozor
+             
             var loginWindow = new LoginWindow();
             loginWindow.Show();
 

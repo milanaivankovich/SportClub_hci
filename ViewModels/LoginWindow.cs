@@ -27,7 +27,7 @@ namespace SportClub.ViewModels
                 _isPasswordVisible = value;
                 OnPropertyChanged(nameof(IsPasswordVisible));
 
-                // Sinhronizuj password između TextBox-a i PasswordBox-a
+                
                 if (_isPasswordVisible && !string.IsNullOrEmpty(Password))
                 {
                     PasswordText = Password;
@@ -42,7 +42,7 @@ namespace SportClub.ViewModels
             set
             {
                 _passwordText = value;
-                Password = value; // Sinhronizuj sa Password propertijem
+                Password = value; 
                 OnPropertyChanged(nameof(PasswordText));
             }
         }
@@ -97,10 +97,9 @@ namespace SportClub.ViewModels
                 var user = _context.Users.FirstOrDefault(u => u.Username == Username && u.Password == Password);
                 if (user != null)
                 {
-                    // Postaviti trenutnog korisnika
+                    
                     CurrentUserService.Instance.SetCurrentUser(user);
 
-                    // Učitati tema korisnika
                     LoadUserTheme(user.IdUser);
 
                     if (_context.Admins.Any(a => a.IdUser == user.IdUser))
@@ -168,8 +167,7 @@ namespace SportClub.ViewModels
         }
     }
 
-    // Jednostavna implementacija RelayCommand (možeš koristiti MVVM Light umjesto ovoga)
-    public class RelayCommand : ICommand
+       public class RelayCommand : ICommand
     {
         private readonly Action _execute;
         private readonly Func<bool> _canExecute;

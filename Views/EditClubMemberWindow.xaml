@@ -10,7 +10,7 @@
         Background="{DynamicResource BackgroundBrush}">
 
     <Window.Resources>
-        <!-- Dynamic TextBox Style -->
+        
         <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
             <Setter Property="Margin" Value="0,5,0,15"/>
             <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
@@ -18,7 +18,7 @@
             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
         </Style>
 
-        <!-- Dynamic Button Style -->
+         
         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
             <Setter Property="Margin" Value="10,0,0,0"/>
             <Setter Property="Width" Value="100"/>
@@ -27,13 +27,13 @@
             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
         </Style>
 
-        <!-- Dynamic CheckBox Style -->
+         
         <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignCheckBox}">
             <Setter Property="Margin" Value="0,10,0,20"/>
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
         </Style>
 
-        <!-- Dynamic DatePicker Style -->
+        
         <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
             <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
@@ -41,14 +41,14 @@
             <Setter Property="Margin" Value="0,5,0,10"/>
         </Style>
 
-        <!-- Dynamic TextBlock Style -->
+        
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
     </Window.Resources>
 
-    <!-- Main Grid with dynamic background -->
+    
     <Grid Margin="20" Background="{DynamicResource BackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -62,22 +62,21 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Ime -->
+         
         <TextBlock Grid.Row="0" Text="Ime:" Margin="0,0,0,5"/>
         <TextBox x:Name="ImeTextBox" Grid.Row="1"/>
 
-        <!-- Prezime -->
+        
         <TextBlock Grid.Row="2" Text="Prezime:" Margin="0,0,0,5"/>
         <TextBox x:Name="PrezimeTextBox" Grid.Row="3"/>
 
-        <!-- Datum rođenja -->
+        
         <TextBlock Grid.Row="4" Text="Datum rođenja:" Margin="0,0,0,5"/>
         <DatePicker x:Name="DatumRodjenjaDatePicker" Grid.Row="5"/>
 
-        <!-- Aktivan -->
+         
         <CheckBox x:Name="AktivanCheckBox" Grid.Row="6" Content="Aktivan"/>
-
-        <!-- Buttons -->
+ 
         <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
             <Button Content="Sačuvaj" Click="SaveButton_Click"/>
             <Button Content="Otkaži" Click="CancelButton_Click" Margin="10,0,0,0"/>

@@ -10,17 +10,15 @@ namespace SportClub.Models
     public class Competition
     {
         [Key]
-        public int IdCompetition { get; set; }  // idTakmicenje
+        public int IdCompetition { get; set; } 
 
         [Required, MaxLength(45)]
-        public string Name { get; set; }  // Naziv
+        public string Name { get; set; } 
 
-        public DateTime Date { get; set; }  // Datum (DATETIME)
+        public DateTime Date { get; set; }  
 
         [MaxLength(45)]
-        public string Location { get; set; }  // Lokacija
-
-        // Navigaciona properti za članove (many-to-many)
+        public string Location { get; set; }  
         public virtual ICollection<ClubMember> ClubMembers { get; set; } = new List<ClubMember>();
     }
 }

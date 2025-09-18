@@ -32,19 +32,18 @@ namespace SportClub.Services
 
             try
             {
-                // Remove existing custom theme
+                
                 RemoveCurrentTheme(app);
 
-                // Load and apply new theme
                 if (_themes.TryGetValue(themeName, out Uri themeUri))
                 {
                     _currentTheme = new ResourceDictionary { Source = themeUri };
                     app.Resources.MergedDictionaries.Add(_currentTheme);
 
-                    // Apply theme to all existing windows
+                   
                     ApplyThemeToWindows();
 
-                    // Notify subscribers
+                    
                     ThemeChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
@@ -61,7 +60,7 @@ namespace SportClub.Services
                 app.Resources.MergedDictionaries.Remove(_currentTheme);
             }
 
-            // Remove any existing theme dictionaries
+            
             var dictionariesToRemove = app.Resources.MergedDictionaries
                 .Where(dict => dict.Source != null &&
                               (dict.Source.OriginalString.Contains("LightTheme.xaml") ||
@@ -84,7 +83,7 @@ namespace SportClub.Services
             {
                 try
                 {
-                    // Apply background brush
+                    
                     if (_currentTheme.Contains("BackgroundBrush"))
                     {
                         var backgroundBrush = _currentTheme["BackgroundBrush"] as Brush;
@@ -94,7 +93,7 @@ namespace SportClub.Services
                         }
                     }
 
-                    // Force update of window styles
+                   
                     window.UpdateDefaultStyle();
                     window.InvalidateVisual();
                 }
@@ -116,7 +115,7 @@ namespace SportClub.Services
                 app.Resources["GlobalFontFamily"] = font;
                 app.Resources["GlobalFontSize"] = fontSize;
 
-                // Apply font to all current windows
+               
                 foreach (Window window in app.Windows)
                 {
                     window.FontFamily = font;
@@ -125,7 +124,7 @@ namespace SportClub.Services
             }
             catch (Exception)
             {
-                // Fallback to default font
+                
                 app.Resources["GlobalFontFamily"] = new FontFamily("Segoe UI");
                 app.Resources["GlobalFontSize"] = 14.0;
             }

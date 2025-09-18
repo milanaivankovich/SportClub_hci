@@ -28,7 +28,7 @@ namespace SportClub.ViewModels
 
         private void LoadTrainings()
         {
-            // Učitaj treninge sa svim povezanim podacima
+          
             _allTrainings = _context.Trainings
                 .Include(t => t.Attendances)
                 .ThenInclude(a => a.ClubMember)
@@ -88,13 +88,13 @@ namespace SportClub.ViewModels
                 bool dateMatch = true;
                 bool typeMatch = true;
 
-                // Filter by date
+                
                 if (!string.IsNullOrEmpty(SearchDate) && DateTime.TryParse(SearchDate, out DateTime searchDate))
                 {
                     dateMatch = training.DateTime.Date == searchDate.Date;
                 }
 
-                // Filter by type
+               
                 if (SelectedTrainingType != "Svi")
                 {
                     typeMatch = training.Type == SelectedTrainingType;
@@ -117,7 +117,7 @@ namespace SportClub.ViewModels
             _context.Trainings.Add(newTraining);
             _context.SaveChanges();
 
-            // Osveži listu treninga
+            
             LoadTrainings();
             OnPropertyChanged(nameof(Trainings));
         }
@@ -126,14 +126,14 @@ namespace SportClub.ViewModels
         {
             if (SelectedTraining != null && member != null)
             {
-                // Provjeri da član već nije prisustan na treningu
+                
                 var existingAttendance = _context.Attendances
                     .FirstOrDefault(a => a.IdClubMember == member.IdClubMember &&
                                         a.IdTraining == SelectedTraining.IdTraining);
 
                 if (existingAttendance != null)
                 {
-                    return; // Član je već prisustan
+                    return; 
                 }
 
                 var attendance = new Attendance
@@ -146,7 +146,7 @@ namespace SportClub.ViewModels
                 _context.Attendances.Add(attendance);
                 _context.SaveChanges();
 
-                // Osveži podatke za trenutno odabrani trening
+               
                 RefreshSelectedTraining();
             }
         }
@@ -155,7 +155,7 @@ namespace SportClub.ViewModels
         {
             if (SelectedTraining != null)
             {
-                // Ponovo učitaj odabrani trening sa ažuriranim podacima
+               
                 var refreshedTraining = _context.Trainings
                     .Include(t => t.Attendances)
                     .ThenInclude(a => a.ClubMember)
@@ -163,7 +163,7 @@ namespace SportClub.ViewModels
 
                 if (refreshedTraining != null)
                 {
-                    // Ažuriraj trening u listi
+                    
                     var trainingInList = _allTrainings.FirstOrDefault(t => t.IdTraining == SelectedTraining.IdTraining);
                     if (trainingInList != null)
                     {

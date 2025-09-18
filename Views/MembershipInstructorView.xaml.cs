@@ -20,25 +20,25 @@ namespace SportClub.Views
             _viewModel = new MembershipInstructorViewModel();
             DataContext = _viewModel;
 
-            // Pretplati se na promjenu odabrane članarine
+             
             _viewModel.PropertyChanged += ViewModel_PropertyChanged;
 
-            // Pretplati se na Unloaded događaj
+             
             this.Unloaded += MembershipInstructorView_Unloaded;
 
-            // Inicijalno učitaj dostupne članove
+             
             LoadAvailableMembers();
         }
 
         private void MembershipInstructorView_Unloaded(object sender, RoutedEventArgs e)
         {
-            // Otkloni pretplatu na događaje
+           
             if (_viewModel != null)
             {
                 _viewModel.PropertyChanged -= ViewModel_PropertyChanged;
             }
 
-            // Oslobodi resurse
+             
             _context?.Dispose();
         }
 
@@ -77,7 +77,7 @@ namespace SportClub.Views
                 {
                     _viewModel.AddMemberToMembership(selectedMember);
                     AvailableMembersComboBox.SelectedItem = null;
-                    LoadAvailableMembers(); // Osveži listu dostupnih članova
+                    LoadAvailableMembers(); 
                     MessageBox.Show("Član je uspješno dodan na članarinu.", "Uspjeh", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)

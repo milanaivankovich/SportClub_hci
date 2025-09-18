@@ -18,23 +18,23 @@ namespace SportClub.Views
             InitializeComponent();
             DatePicker.SelectedDate = DateTime.Today;
 
-            // Apply current theme to window
+            
             ApplyTheme();
 
-            // Subscribe to theme change events
+            
             ThemeService.Instance.ThemeChanged += OnThemeChanged;
         }
 
         private void ApplyTheme()
         {
-            // Ensure the window background is properly set from the theme
+            
             var backgroundBrush = TryFindResource("BackgroundBrush") as Brush;
             if (backgroundBrush != null)
             {
                 this.Background = backgroundBrush;
             }
 
-            // Apply global font settings if they exist
+           
             var fontFamily = Application.Current.Resources["GlobalFontFamily"] as FontFamily;
             var fontSize = Application.Current.Resources["GlobalFontSize"] as double?;
 
@@ -56,7 +56,7 @@ namespace SportClub.Views
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            // Validation with themed message box
+            
             if (string.IsNullOrEmpty(NameTextBox.Text) ||
                 TypeComboBox.SelectedItem == null ||
                 DatePicker.SelectedDate == null ||
@@ -66,7 +66,7 @@ namespace SportClub.Views
                 return;
             }
 
-            // Parse time with exact format
+            
             if (DateTime.TryParseExact(TimeTextBox.Text, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime time))
             {
                 TrainingName = NameTextBox.Text;
@@ -90,7 +90,7 @@ namespace SportClub.Views
 
         private void ShowThemedMessageBox(string title, string message, MessageBoxImage icon)
         {
-            // Create a custom themed message box window
+            
             var messageWindow = new Window
             {
                 Title = title,
@@ -134,7 +134,7 @@ namespace SportClub.Views
 
         protected override void OnClosed(EventArgs e)
         {
-            // Unsubscribe from theme change events
+            
             ThemeService.Instance.ThemeChanged -= OnThemeChanged;
             base.OnClosed(e);
         }

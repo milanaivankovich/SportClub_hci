@@ -49,7 +49,7 @@ namespace SportClub.ViewModels
                 _selectedTheme = value;
                 OnPropertyChanged();
                 ApplyTheme();
-                SaveSettings(); // Automatski sačuvaj kad se promijeni tema
+                SaveSettings(); 
             }
         }
 
@@ -61,7 +61,7 @@ namespace SportClub.ViewModels
                 _selectedFont = value;
                 OnPropertyChanged();
                 ApplyFont();
-                SaveSettings(); // Automatski sačuvaj kad se promijeni font
+                SaveSettings(); 
             }
         }
 
@@ -73,7 +73,7 @@ namespace SportClub.ViewModels
                 _selectedFontSize = value;
                 OnPropertyChanged();
                 ApplyFontSize();
-                SaveSettings(); // Automatski sačuvaj kad se promijeni veličina fonta
+                SaveSettings(); 
             }
         }
 

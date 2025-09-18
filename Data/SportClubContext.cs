@@ -29,12 +29,12 @@ namespace SportClub.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            // TPT (Table Per Type) configuration
+            
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Admin>().ToTable("Admins");
             modelBuilder.Entity<Instructor>().ToTable("Instructors");
 
-            // Many-to-many: Membership <-> ClubMember
+            
             modelBuilder.Entity<MembershipClubMember>()
                 .HasKey(mc => new { mc.IdMembership, mc.IdClubMember });
 
@@ -48,7 +48,7 @@ namespace SportClub.Data
                 .WithMany(c => c.MembershipClubMembers)
                 .HasForeignKey(mc => mc.IdClubMember);
 
-            // Many-to-many: Competition <-> ClubMember
+            
             modelBuilder.Entity<Competition>()
                 .HasMany(c => c.ClubMembers)
                 .WithMany(cm => cm.Competitions)
@@ -58,7 +58,7 @@ namespace SportClub.Data
                     j => j.ToTable("CompetitionClubMembers")
                 );
 
-            // Many-to-many: Instructor <-> Training
+            
             modelBuilder.Entity<Instructor>()
                 .HasMany(i => i.Trainings)
                 .WithMany(t => t.Instructors)
@@ -68,13 +68,13 @@ namespace SportClub.Data
                     j => j.ToTable("InstructorTrainings")
                 );
 
-            // One-to-many: Attendance -> ClubMember
+            
             modelBuilder.Entity<Attendance>()
                 .HasOne(a => a.ClubMember)
                 .WithMany(cm => cm.Attendances)
                 .HasForeignKey(a => a.IdClubMember);
 
-            // One-to-many: Attendance -> Training
+            
             modelBuilder.Entity<Attendance>()
                 .HasOne(a => a.Training)
                 .WithMany(t => t.Attendances)
@@ -87,12 +87,12 @@ namespace SportClub.Data
                 .WithMany()
                 .HasForeignKey(us => us.UserId);
 
-            // Seed data
+           
             modelBuilder.Entity<Admin>().HasData(
                 new Admin { IdUser = 1, FirstName = "Admin", LastName = "User", Username = "admin", Password = "admin123" }
             );
 
-            // Instructors
+            
             modelBuilder.Entity<Instructor>().HasData(
                 new Instructor { IdUser = 2, FirstName = "Marko", LastName = "Petrovic", Username = "marko_p", Password = "pass123" },
                 new Instructor { IdUser = 3, FirstName = "Ana", LastName = "Jovanovic", Username = "ana_j", Password = "pass456" },
@@ -101,7 +101,7 @@ namespace SportClub.Data
                 new Instructor { IdUser = 6, FirstName = "Stefan", LastName = "Milic", Username = "stefan_m", Password = "pass202" }
             );
 
-            // Club Members
+           
             modelBuilder.Entity<ClubMember>().HasData(
                 new ClubMember { IdClubMember = 1, FirstName = "Petar", LastName = "Nikolic", BirthDate = new DateTime(1995, 5, 12), Active = true },
                 new ClubMember { IdClubMember = 2, FirstName = "Marija", LastName = "Stojanovic", BirthDate = new DateTime(1998, 8, 23), Active = true },
@@ -115,14 +115,14 @@ namespace SportClub.Data
                 new ClubMember { IdClubMember = 10, FirstName = "Jovana", LastName = "Zivkovic", BirthDate = new DateTime(2001, 7, 14), Active = true }
             );
 
-            // Memberships (updated with TimeSpan and new Type values)
+           
             modelBuilder.Entity<Membership>().HasData(
                 new Membership { IdMembership = 1, Type = "Jul24", Price = 30, Duration = TimeSpan.FromDays(30) },
                 new Membership { IdMembership = 2, Type = "Polugodisnja25", Price = 150, Duration = TimeSpan.FromDays(180) },
                 new Membership { IdMembership = 3, Type = "Godisnja25", Price = 280, Duration = TimeSpan.FromDays(365) }
             );
 
-            // Trainings (unchanged)
+            
             var trainings = new List<Training>();
             string[] trainingTypes = { "Boulder", "Cardio", "Speed", "Lead", "Mobility" };
             for (int i = 1; i <= 100; i++)
@@ -137,7 +137,7 @@ namespace SportClub.Data
             }
             modelBuilder.Entity<Training>().HasData(trainings);
 
-            // Competitions (unchanged)
+            
             modelBuilder.Entity<Competition>().HasData(
                 new Competition { IdCompetition = 1, Name = "Prvenstvo RS 1. kolo", Date = new DateTime(2024, 4, 10), Location = "Banja Luka" },
                 new Competition { IdCompetition = 2, Name = "Prvenstvo BiH 1. kolo", Date = new DateTime(2024, 7, 15), Location = "Sarajevo" },
@@ -151,7 +151,7 @@ namespace SportClub.Data
                 new Competition { IdCompetition = 10, Name = "Evropsko prvenstvo", Date = new DateTime(2025, 12, 15), Location = "Ljubljana" }
             );
 
-            // Instructor-Training assignments (unchanged)
+            
             var instructorTrainings = new List<InstructorTraining>();
             var random = new Random(42);
             for (int i = 1; i <= 100; i++)
@@ -165,7 +165,7 @@ namespace SportClub.Data
             }
             modelBuilder.Entity<InstructorTraining>().HasData(instructorTrainings);
 
-            // Attendance (unchanged)
+            
             var attendances = new List<Attendance>();
             int attendanceId = 1;
             for (int memberId = 1; memberId <= 10; memberId++)
@@ -185,7 +185,7 @@ namespace SportClub.Data
             }
             modelBuilder.Entity<Attendance>().HasData(attendances);
 
-            // Competition-ClubMember assignments (unchanged)
+            
             var competitionClubMembers = new List<CompetitionClubMember>();
             for (int memberId = 1; memberId <= 10; memberId++)
             {
@@ -202,20 +202,20 @@ namespace SportClub.Data
             }
             modelBuilder.Entity<CompetitionClubMember>().HasData(competitionClubMembers);
 
-            // Membership-ClubMember assignments (updated to remove Id and use composite key)
+            
             var membershipClubMembers = new List<MembershipClubMember>();
-            var rnd = new Random(42); // Make sure this is declared earlier if not already
+            var rnd = new Random(42); 
 
             for (int memberId = 1; memberId <= 10; memberId++)
             {
-                int membershipType = rnd.Next(1, 4); // 1: Jul24, 2: Polugodišnja25, 3: Godišnja25
+                int membershipType = rnd.Next(1, 4); 
 
                 if (membershipType == 1)
                 {
                     int monthlyCount = random.Next(2, 5);
                     for (int i = 0; i < monthlyCount; i++)
                     {
-                        // Create unique membership entries by adding months
+                        
                         int monthOffset = i;
                         membershipClubMembers.Add(new MembershipClubMember
                         {
@@ -234,7 +234,7 @@ namespace SportClub.Data
                 }
             }
 
-            // Remove duplicates by grouping and taking only the first occurrence of each key
+            
             var uniqueMembershipClubMembers = membershipClubMembers
                 .GroupBy(m => new { m.IdMembership, m.IdClubMember })
                 .Select(g => g.First())
