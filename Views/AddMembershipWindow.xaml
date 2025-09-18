@@ -91,7 +91,7 @@
                 <TextBlock Grid.Row="0" Text="Cijena (km):"/>
                 <TextBox x:Name="CijenaTextBox" 
                         Grid.Row="1"
-                        materialDesign:HintAssist.Hint="Unesite cijenu u eurima"
+                        materialDesign:HintAssist.Hint="Unesite cijenu u km"
                         materialDesign:HintAssist.IsFloating="False"
                         PreviewTextInput="CijenaTextBox_PreviewTextInput"/>
             </Grid>
