@@ -5,20 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Izmjena Takmičenja" Height="450" Width="400"
-        WindowStartupLocation="CenterScreen">
+        Title="Izmjena Takmičenja" Height="550" Width="400"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource BackgroundBrush}">
 
     <Window.Resources>
+        <!-- Dynamic TextBox Style -->
         <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextBox}">
             <Setter Property="Margin" Value="0,5,0,15"/>
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
         </Style>
+
+        <!-- Dynamic Button Style -->
         <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
             <Setter Property="Margin" Value="10,0,0,0"/>
             <Setter Property="Width" Value="100"/>
+            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+        </Style>
+
+        <!-- Special style for the "Sada" button -->
+        <Style x:Key="CurrentTimeButtonStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
+            <Setter Property="Background" Value="{DynamicResource SecondaryBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SecondaryBrush}"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
+        <!-- Dynamic DatePicker Style -->
+        <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignOutlinedDatePicker}">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="Margin" Value="0,5,0,10"/>
+        </Style>
+
+        <!-- Dynamic TextBlock Style -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
     </Window.Resources>
 
-    <Grid Margin="20">
+    <!-- Main Grid with dynamic background -->
+    <Grid Margin="20" Background="{DynamicResource BackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -32,28 +66,34 @@
         </Grid.RowDefinitions>
 
         <!-- Naziv -->
-        <TextBlock Grid.Row="0" Text="Naziv:" Margin="0,0,0,5" FontWeight="Bold"/>
+        <TextBlock Grid.Row="0" Text="Naziv:" Margin="0,0,0,5"/>
         <TextBox x:Name="NazivTextBox" Grid.Row="1"/>
 
         <!-- Mjesto -->
-        <TextBlock Grid.Row="2" Text="Mjesto:" Margin="0,0,0,5" FontWeight="Bold"/>
+        <TextBlock Grid.Row="2" Text="Mjesto:" Margin="0,0,0,5"/>
         <TextBox x:Name="MjestoTextBox" Grid.Row="3"/>
 
         <!-- Datum -->
-        <TextBlock Grid.Row="4" Text="Datum:" Margin="0,0,0,5" FontWeight="Bold"/>
-        <DatePicker x:Name="DatumDatePicker" Grid.Row="5" 
-                   Style="{StaticResource MaterialDesignOutlinedDatePicker}"
-                   Margin="0,5,0,10"/>
+        <TextBlock Grid.Row="4" Text="Datum:" Margin="0,0,0,5"/>
+        <DatePicker x:Name="DatumDatePicker" Grid.Row="5"/>
 
         <!-- Vrijeme -->
-        <TextBlock Grid.Row="6" Text="Vrijeme:" Margin="0,0,0,5" FontWeight="Bold"/>
+        <TextBlock Grid.Row="6" Text="Vrijeme:" Margin="0,0,0,5"/>
         <Grid Grid.Row="7" Margin="0,5,0,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="VrijemeTextBox" Margin="0,0,10,0"/>
-            <Button Grid.Column="1" Content="Sada" Click="SetCurrentTime_Click"/>
+            <TextBox x:Name="VrijemeTextBox" 
+                     Grid.Column="0"
+                     Margin="0,0,10,0"
+                     PreviewTextInput="VrijemeTextBox_PreviewTextInput"
+                     materialDesign:HintAssist.Hint="HH:mm"/>
+            <Button Grid.Column="1" 
+                    Content="Sada" 
+                    Click="SetCurrentTime_Click"
+                    Style="{StaticResource CurrentTimeButtonStyle}"
+                    ToolTip="Postavi trenutno vrijeme"/>
         </Grid>
 
         <!-- Buttons -->
