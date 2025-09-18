@@ -169,7 +169,7 @@ Moguće je promjeniti lozinku, da bi to uradili prvo se unosi trenutna lozinka, 
 
 ![image_uri](https://github.com/milanaivankovich/SportClub_hci/blob/fee249daf6d2049a7c13cd95b8a140d7318a6aad/photos/Screenshot%20(32).png)
 
-## Odajava sa sistema
+## Odjava sa sistema
 
 Odjava sa sistema vriše se klikom na dugme Odjavi me, koje se nalazi u gornjem desnom uglu. Klikom na to dugme odjavlje se sa sistema, trenutni prozor se gasi, a otvara se prozor za prijavu na sistem.
 
