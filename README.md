@@ -8,12 +8,16 @@ A WPF .NET C# aplikacija za upravljanje sportskim klubom, sa SQLite bazom podata
 - Dvostruki sistem uloga: Administrator i Instruktor
 - Logovanje sa kontrolom pristupa na osnovu uloga
 
+![image_alt](https://github.com/milanaivankovich/SportClub_hci/blob/5f2f548ffe1779b52d64993d17f1582aac03ee4e/photos/Screenshot%20(14).png)
+
 ### Mogućnosti administratora
 - Upravljanje instruktorima (dodavanje/izmena)
 - Upravljanje takmičenjima (kreiranje/izmena)
 - Upravljanje članarinama (dodavanje/izmena)
 - Podešavanje teme aplikacije
 - Promjena ličnih podešavanja
+
+![image_alt](https://github.com/milanaivankovich/SportClub_hci/blob/5f2f548ffe1779b52d64993d17f1582aac03ee4e/photos/Screenshot%20(22).png)
 
 ### Mogućnosti instruktora
 - Upravljanje članovima (dodavanje/izmena)
@@ -23,6 +27,8 @@ A WPF .NET C# aplikacija za upravljanje sportskim klubom, sa SQLite bazom podata
 - Upravljanje učesnicima na takmičenjima
 - Dodavanje članarina članovima
 - Podešavanje ličnih postavki
+
+![image_alt](https://github.com/milanaivankovich/SportClub_hci/blob/5f2f548ffe1779b52d64993d17f1582aac03ee4e/photos/Screenshot%20(15).png)
 
 ### Teme aplikacije
 - Tamna tema (Dark)
