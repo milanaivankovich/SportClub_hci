@@ -10,8 +10,8 @@
   ####  - Upravljanje korisničkim nalozima
    Jasno definisane uloge i kontrole pristupa doprinose većoj sigurnosti i pouzdanosti rada aplikacije.
 
-  ####  - Centralizovano upravljanje članovima, članarinam, treninzima, takimičenjima
-   Sistem podržava upravljanje upravljanje: članovima, članarinam, treninzima, takimičenjima. Omogućavajući pregled, dodavanje i uređivanje istih.
+  ####  - Centralizovano upravljanje članovima, članarinama, treninzima, takimičenjima
+   Sistem podržava upravljanje upravljanje: članovima, članarinama, treninzima, takimičenjima. Omogućavajući pregled, dodavanje i uređivanje istih.
 
   ####  - Personalizacija
    Sistem podržava više vizuelnih tema i izmjenu profila korisnika, omogućavajući bolje podešavanje interfejsa prema individualnim potrebama.
@@ -20,7 +20,7 @@
  SportClub ima jasno definisane korisničke uloge, što omogućava preciznu podjelu odgovornosti i sprječava neovlašćen pristup funkcijama sistema.
 
 ### Uloge u sistemu
-SportClub podržava dva tima korisnka, odnosno postoje dvije uloge u sistemu:
+SportClub podržava dva tipa korisnka, odnosno postoje dvije uloge u sistemu:
 
 #### 1. Administrator
 
@@ -64,7 +64,7 @@ U nastavku se nalazi prikaz aplikacije.
 
 ### Kreiranje i uredjivanje članarina
 
-Ukoliko su u meni-u odabrane Članarine. Moguće je dodati novu članarinu klikom na dugme Dodavanje Članarine, otvara se prozor za Dodavanje Članarine, koji se sastoji od polja za naziv, cijena i trajanje, ukoliko želite da kreirate novu članarinu kliknete dugme Sačuvaj, ukoliko ne želite kliknete dugme Otkaži. Ukoliko želite da izmjenite podatke već postojeće članarine, potrebno je da je odaberete u tabeli i kliknete dugme Izmjena Članarine. Nakon klika na dugme Izmjena Članarine, otvara se prozor za izmjenu, gdje su u poljima učitane vrijednosti odabrane članarine, sva polja možete izmjeniti, ukoliko hoćete da sačuvate izmjene kliknite na dugme Sačuvaj, u suprotnom na dugme Otkaži.
+Ukoliko su u meni-u odabrane Članarine. Moguće je dodati novu članarinu klikom na dugme Dodavanje Članarine, otvara se prozor za Dodavanje Članarine, koji se sastoji od polja za naziv, cijenu i trajanje, ukoliko želite da kreirate novu članarinu kliknete dugme Sačuvaj, ukoliko ne želite kliknete dugme Otkaži. Ukoliko želite da izmjenite podatke već postojeće članarine, potrebno je da je odaberete u tabeli i kliknete dugme Izmjena Članarine. Nakon klika na dugme Izmjena Članarine, otvara se prozor za izmjenu, gdje su u poljima učitane vrijednosti odabrane članarine, sva polja možete izmjeniti, ukoliko hoćete da sačuvate izmjene kliknite na dugme Sačuvaj, u suprotnom na dugme Otkaži.
 
 U nastavku se nalazi prikaz aplikacije. 
 
@@ -76,7 +76,7 @@ U nastavku se nalazi prikaz aplikacije.
 
 ### Kreiranje i uredjivanje takmičenja
 
-Ukoliko su u meni-u odabrane Takmičenja. Moguće je dodati novo takmičenje klikom na dugme Dodavanje Takmičenja, otvara se prozor za Dodavanje Takmičenja, koji se sastoji od polja za naziv, , ukoliko želite da kreirate novo takmičenje kliknete dugme Sačuvaj, ukoliko ne želite kliknete dugme Otkaži. Ukoliko želite da izmjenite podatke već postojećeg takmičenja, potrebno je da je odaberete u tabeli i kliknete dugme Izmjena Takmičenja. Nakon klika na dugme Izmjena Takmičenja, otvara se prozor za izmjenu, gdje su u poljima učitane vrijednosti odabranog takmičenja, sva polja možete izmjeniti, ukoliko hoćete da sačuvate izmjene kliknite na dugme Sačuvaj, u suprotnom na dugme Otkaži.
+Ukoliko su u meni-u odabrana Takmičenja. Moguće je dodati novo takmičenje klikom na dugme Dodavanje Takmičenja, otvara se prozor za Dodavanje Takmičenja, koji se sastoji od polja za naziv, lokaciju, datum i vrijeme, ukoliko želite da kreirate novo takmičenje kliknete dugme Sačuvaj, ukoliko ne želite kliknete dugme Otkaži. Ukoliko želite da izmjenite podatke već postojećeg takmičenja, potrebno je da ge odaberete u tabeli i kliknete dugme Izmjena Takmičenja. Nakon klika na dugme Izmjena Takmičenja, otvara se prozor za izmjenu, gdje su u poljima učitane vrijednosti odabranog takmičenja, sva polja možete izmjeniti, ukoliko hoćete da sačuvate izmjene kliknite na dugme Sačuvaj, u suprotnom na dugme Otkaži.
 
 U nastavku se nalazi prikaz aplikacije. 
 
@@ -123,7 +123,7 @@ Odabirom opcije Takmičenje u meni-u, učitava se prozor u kojem instruktor ima 
 
 - pretražuje takmičenje po nazivu
 - dodaje članove na spisak takmičara
-- uklanja takičare sa spiska 
+- uklanja takmičara sa spiska 
 
 Da bi se sačuvale promjene koje, da li je član dodan ili uklonje sa spiska, potrebno je da se klikne dugme Sačuvaj promjene.
 
@@ -148,7 +148,7 @@ Podešavanje korisničkog izgleda aplikacije je isti za obe uloge u sistemu, ist
 
 ### Podešavanje korisničkog izgleda
 
-Korisnku ima pravo izbora na tri teme (Default, Light i Dark), četiti raličita fonta i pet različitih veličina fonta. Odabir željene teme, fonta i velićine fonta vrši se selekcijom iz padajućeg menia. Sve odabrano se odmah primjenjuje na čitav sistem.
+Korisnik ima pravo izbora na tri teme (Default, Light i Dark), četiti raličita fonta i pet različitih veličina fonta. Odabir željene teme, fonta i veličine fonta vrši se selekcijom iz padajućeg menia. Sve odabrano se odmah primjenjuje na čitav sistem.
 
 #### Default tema
 
@@ -165,7 +165,7 @@ Korisnku ima pravo izbora na tri teme (Default, Light i Dark), četiti raličita
 
 ### Izmjena lozinke
 
-Moguće je promjeniti lozinku, da bi to uradili prvo se unosi trenutna lozinka, nakon toga se unosi nova lozinka i potrebno je da se potvrdi nova lozinka. Promjenja lozinka ce biti zapamćena tek nakon što se klikne dugme PROMIJENI LOZINKU.
+Moguće je promjeniti lozinku, da bi to uradili prvo se unosi trenutna lozinka, nakon toga se unosi nova lozinka i potrebno je da se potvrdi nova lozinka. Promjenja lozinka će biti zapamćena tek nakon što se klikne dugme PROMIJENI LOZINKU.
 
 ![image_uri](https://github.com/milanaivankovich/SportClub_hci/blob/fee249daf6d2049a7c13cd95b8a140d7318a6aad/photos/Screenshot%20(32).png)
 
